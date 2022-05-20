@@ -25,13 +25,13 @@ public class RepositorioMascotaMysql implements RepositorioMascota {
     private static String sqlCrear;
 
     @Override
-    public Long guardar(Mascota mascota) {
+    public Mascota guardar(Mascota mascota) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("codigo_mascota", mascota.getCodigoMascota());
         paramSource.addValue("nombre", mascota.getNombre());
         paramSource.addValue("tipo_mascota", mascota.getTipoMascota());
         Long idMascota = this.customNamedParameterJdbcTemplate.crear(paramSource, sqlCrear);
         repositorioCupon.guardar(mascota.getCupones(), idMascota);
-        return idMascota;
+        return Mascota.reconstruir(idMascota, mascota.getCodigoMascota(), mascota.getNombre(), mascota.getTipoMascota(), mascota.getCupones());
     }
 }

@@ -13,7 +13,7 @@ public class ServicioRegistrarMascota {
         this.repositorioMascota = repositorioMascota;
     }
 
-    public Long ejecutar(SolicitudRegistrarMascota solicitudRegistrarMascota) {
+    public Mascota ejecutar(SolicitudRegistrarMascota solicitudRegistrarMascota) {
         Mascota mascota = Mascota.crear(solicitudRegistrarMascota);
         return repositorioMascota.guardar(mascota);
     }

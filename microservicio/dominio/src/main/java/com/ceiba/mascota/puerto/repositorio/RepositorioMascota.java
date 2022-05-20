@@ -5,5 +5,5 @@ import com.ceiba.mascota.modelo.entidad.Mascota;
 import java.util.List;
 
 public interface RepositorioMascota {
-    Long guardar(Mascota mascota);
+    Mascota guardar(Mascota mascota);
 }

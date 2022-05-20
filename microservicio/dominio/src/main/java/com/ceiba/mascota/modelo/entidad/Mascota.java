@@ -26,11 +26,12 @@ public class Mascota {
         this.cupones = cupon;
     }
 
-    private Mascota(Long id, String codigoMascota, String nombre, Long tipoMascota) {
+    private Mascota(Long id, String codigoMascota, String nombre, Long tipoMascota, List<Cupon> cupones) {
         this.id = id;
         this.codigoMascota = codigoMascota;
         this.nombre = nombre;
         this.tipoMascota = tipoMascota;
+        this.cupones = cupones;
     }
 
     public static Mascota crear(SolicitudRegistrarMascota solicitudRegistrarMascota) {
@@ -51,10 +52,10 @@ public class Mascota {
         if (!TIPO_MASCOTA_GATO.equals(tipoMascota) && !TIPO_MASCOTA_PERRO.equals(tipoMascota)) {
             throw new ExcepcionValorInvalido("Tipo de mascota no permitido en la veterinaria");
         }
-        return new Mascota(null, codigoMascota, nombre, tipoMascota);
+        return new Mascota(null, codigoMascota, nombre, tipoMascota, null);
     }
 
-    public static Mascota reconstruir(Long id, String codigoMascota, String nombre, Long tipoMascota) {
+    public static Mascota reconstruir(Long id, String codigoMascota, String nombre, Long tipoMascota, List<Cupon> cupones) {
         ValidadorArgumento.validarObligatorio(id, "El id es requerido");
         ValidadorArgumento.validarObligatorio(codigoMascota, "El código de la mascota es requerido");
         ValidadorArgumento.validarObligatorio(nombre, "El nombre de la mascota es requerido");
@@ -62,7 +63,7 @@ public class Mascota {
         if (!TIPO_MASCOTA_GATO.equals(tipoMascota) && !TIPO_MASCOTA_PERRO.equals(tipoMascota)) {
             throw new ExcepcionValorInvalido("Tipo de mascota no permitido en la veterinaria");
         }
-        return new Mascota(id, codigoMascota, nombre, tipoMascota);
+        return new Mascota(id, codigoMascota, nombre, tipoMascota, cupones);
     }
 
     public Long getId() {
