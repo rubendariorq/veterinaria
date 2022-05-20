@@ -1,0 +1,1 @@
+insert into mascota(codigo_mascota, nombre, tipo_mascota ) values(:codigo_mascota, :nombre, :tipo_mascota)

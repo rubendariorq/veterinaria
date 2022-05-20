@@ -29,6 +29,14 @@ create table producto_facturar (
  primary key (id)
 );
 
+create table mascota (
+ id int(11) not null auto_increment,
+ codigo_mascota varchar(8) not null,
+ nombre varchar(100) not null,
+ tipo_mascota int(11) not null,
+ primary key (id)
+);
+
 ALTER TABLE factura
 ADD CONSTRAINT cliente_fk
   FOREIGN KEY (id_cliente)
