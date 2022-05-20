@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface DaoTratamiento {
     List<TratamientoDTO> listarTratamientos();
+    TratamientoDTO obtener(Long idTratamiento);
 }

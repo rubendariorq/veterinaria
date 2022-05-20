@@ -17,4 +17,8 @@ public class ManejadorConsultarTratamiento {
     public List<TratamientoDTO> ejecutar(){
         return daoTratamiento.listarTratamientos();
     }
+
+    public TratamientoDTO obtener(Long idTratamiento) {
+        return daoTratamiento.obtener(idTratamiento);
+    }
 }
