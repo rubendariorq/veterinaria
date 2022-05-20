@@ -61,6 +61,7 @@ create table tratamiento (
  fecha_fin date not null,
  tipo_tratamiento int(11) not null,
  id_servicio int(11) not null,
+ valor double precision not null,
  primary key (id)
 );
 

@@ -30,6 +30,7 @@ public class RepositorioTratamientoMysql implements RepositorioTratamiento {
         paramSource.addValue("fecha_fin", tratamiento.getFechaFin());
         paramSource.addValue("tipo_tratamiento", tratamiento.getTipoTratamiento());
         paramSource.addValue("id_servicio", tratamiento.getIdServicio());
+        paramSource.addValue("valor", tratamiento.getValor());
         Long idTratamiento = this.customNamedParameterJdbcTemplate.crear(paramSource, sqlCrear);
         return Tratamiento.reconstruir(idTratamiento, tratamiento.getCodigoTratamiento(), tratamiento.getIdMascota(),
                 tratamiento.getFechaInicio(), tratamiento.getFechaFin(), tratamiento.getTipoTratamiento(), tratamiento.getIdServicio());

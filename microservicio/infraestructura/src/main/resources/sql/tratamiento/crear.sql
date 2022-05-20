@@ -1,2 +1,2 @@
-insert into tratamiento(codigo_tratamiento, id_mascota, fecha_inicio, fecha_fin, tipo_tratamiento, id_servicio )
-values(:codigo_tratamiento, :id_mascota, :fecha_inicio, :fecha_fin, :tipo_tratamiento, :id_servicio)
+insert into tratamiento(codigo_tratamiento, id_mascota, fecha_inicio, fecha_fin, tipo_tratamiento, id_servicio, valor )
+values(:codigo_tratamiento, :id_mascota, :fecha_inicio, :fecha_fin, :tipo_tratamiento, :id_servicio, :valor)

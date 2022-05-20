@@ -20,6 +20,7 @@ public class Tratamiento {
     private Long tipoTratamiento;
     private Long idMascota;
     private Long idServicio;
+    private Double valor;
 
     private Tratamiento (Mascota mascota, Servicio servicio, Tratamiento tratamiento) {
         this.codigoTratamiento = tratamiento.getCodigoTratamiento();
@@ -28,6 +29,7 @@ public class Tratamiento {
         this.tipoTratamiento = tratamiento.getTipoTratamiento();
         this.idMascota = mascota.getId();
         this.idServicio = servicio.getId();
+        this.valor = 0D;
     }
 
     public Tratamiento(Long id, String codigoTratamiento, LocalDate fechaInicio, LocalDate fechaFin, Long tipoTratamiento, Long idMascota, Long idServicio) {
@@ -38,6 +40,7 @@ public class Tratamiento {
         this.tipoTratamiento = tipoTratamiento;
         this.idMascota = idMascota;
         this.idServicio = idServicio;
+        this.valor = 0D;
     }
 
     public static Tratamiento crear(SolicitudIniciarTratamiento solicitudIniciarTratamiento) {
@@ -109,5 +112,9 @@ public class Tratamiento {
 
     public Long getIdServicio() {
         return idServicio;
+    }
+
+    public Double getValor() {
+        return valor;
     }
 }
