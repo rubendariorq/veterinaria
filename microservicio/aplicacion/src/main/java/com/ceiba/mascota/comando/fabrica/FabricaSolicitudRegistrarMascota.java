@@ -1,10 +1,8 @@
 package com.ceiba.mascota.comando.fabrica;
 
-import com.ceiba.factura.comando.ComandoSolicitudFacturar;
-import com.ceiba.factura.modelo.entidad.SolicitudFacturar;
 import com.ceiba.mascota.comando.ComandoSolicitudRegistrarMascota;
-import com.ceiba.mascota.entidad.Mascota;
-import com.ceiba.mascota.entidad.SolicitudRegistrarMascota;
+import com.ceiba.mascota.modelo.entidad.Mascota;
+import com.ceiba.mascota.modelo.entidad.SolicitudRegistrarMascota;
 import com.ceiba.mascota.puerto.repositorio.RepositorioMascota;
 import org.springframework.stereotype.Component;
 

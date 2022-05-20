@@ -1,7 +1,7 @@
 package com.ceiba.mascota.servicio;
 
-import com.ceiba.mascota.entidad.Mascota;
-import com.ceiba.mascota.entidad.SolicitudRegistrarMascota;
+import com.ceiba.mascota.modelo.entidad.Mascota;
+import com.ceiba.mascota.modelo.entidad.SolicitudRegistrarMascota;
 import com.ceiba.mascota.puerto.repositorio.RepositorioMascota;
 
 public class ServicioRegistrarMascota {

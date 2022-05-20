@@ -1,11 +1,13 @@
-package com.ceiba.mascota.repositorio;
+package com.ceiba.mascota.adaptador.repositorio;
 
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
-import com.ceiba.mascota.entidad.Mascota;
+import com.ceiba.mascota.modelo.entidad.Mascota;
 import com.ceiba.mascota.puerto.repositorio.RepositorioMascota;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public class RepositorioMascotaMysql implements RepositorioMascota {
@@ -18,6 +20,7 @@ public class RepositorioMascotaMysql implements RepositorioMascota {
 
     @SqlStatement(namespace = "mascota", value = "crear")
     private static String sqlCrear;
+
     @Override
     public Long guardar(Mascota mascota) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();

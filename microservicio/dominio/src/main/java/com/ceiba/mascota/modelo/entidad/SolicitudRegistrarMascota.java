@@ -1,4 +1,4 @@
-package com.ceiba.mascota.entidad;
+package com.ceiba.mascota.modelo.entidad;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

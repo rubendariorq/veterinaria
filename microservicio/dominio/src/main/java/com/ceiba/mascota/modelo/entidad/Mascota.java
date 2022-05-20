@@ -1,4 +1,4 @@
-package com.ceiba.mascota.entidad;
+package com.ceiba.mascota.modelo.entidad;
 
 import com.ceiba.dominio.ValidadorArgumento;
 import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
@@ -19,7 +19,8 @@ public class Mascota {
         this.tipoMascota = mascota.getTipoMascota();
     }
 
-    public Mascota(String codigoMascota, String nombre, Long tipoMascota) {
+    public Mascota(Long id, String codigoMascota, String nombre, Long tipoMascota) {
+        this.id = id;
         this.codigoMascota = codigoMascota;
         this.nombre = nombre;
         this.tipoMascota = tipoMascota;
@@ -41,7 +42,18 @@ public class Mascota {
         if (!TIPO_MASCOTA_GATO.equals(tipoMascota) && !TIPO_MASCOTA_PERRO.equals(tipoMascota)) {
             throw new ExcepcionValorInvalido("Tipo de mascota no permitido en la veterinaria");
         }
-        return new Mascota(codigoMascota, nombre, tipoMascota);
+        return new Mascota(null, codigoMascota, nombre, tipoMascota);
+    }
+
+    public static Mascota reconstruir(Long id, String codigoMascota, String nombre, Long tipoMascota) {
+        ValidadorArgumento.validarObligatorio(id, "El id es requerido");
+        ValidadorArgumento.validarObligatorio(codigoMascota, "El código de la mascota es requerido");
+        ValidadorArgumento.validarObligatorio(nombre, "El nombre de la mascota es requerido");
+        ValidadorArgumento.validarObligatorio(tipoMascota, "El tipo de mascota es requerido");
+        if (!TIPO_MASCOTA_GATO.equals(tipoMascota) && !TIPO_MASCOTA_PERRO.equals(tipoMascota)) {
+            throw new ExcepcionValorInvalido("Tipo de mascota no permitido en la veterinaria");
+        }
+        return new Mascota(id, codigoMascota, nombre, tipoMascota);
     }
 
     public Long getId() {
