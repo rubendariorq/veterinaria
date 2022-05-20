@@ -1,0 +1,1 @@
+insert into cupon_descuento(codigo_cupon, id_mascota, valor_descuento, fecha_vigencia ) values(:codigo_cupon, :id_mascota, :valor_descuento, :fecha_vigencia)

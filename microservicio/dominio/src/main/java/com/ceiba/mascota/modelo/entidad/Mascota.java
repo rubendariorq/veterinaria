@@ -1,7 +1,11 @@
 package com.ceiba.mascota.modelo.entidad;
 
+import com.ceiba.cupon.entidad.Cupon;
 import com.ceiba.dominio.ValidadorArgumento;
 import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Mascota {
 
@@ -13,13 +17,16 @@ public class Mascota {
     private String nombre;
     private Long tipoMascota;
 
-    public Mascota (Mascota mascota) {
+    private List<Cupon> cupones;
+
+    private Mascota (Mascota mascota, List<Cupon> cupon) {
         this.codigoMascota = mascota.getCodigoMascota();
         this.nombre = mascota.getNombre();
         this.tipoMascota = mascota.getTipoMascota();
+        this.cupones = cupon;
     }
 
-    public Mascota(Long id, String codigoMascota, String nombre, Long tipoMascota) {
+    private Mascota(Long id, String codigoMascota, String nombre, Long tipoMascota) {
         this.id = id;
         this.codigoMascota = codigoMascota;
         this.nombre = nombre;
@@ -32,7 +39,9 @@ public class Mascota {
                 && !TIPO_MASCOTA_PERRO.equals(solicitudRegistrarMascota.getMascota().getTipoMascota())) {
             throw new ExcepcionValorInvalido("Tipo de mascota no permitido en la veterinaria");
         }
-        return new Mascota(solicitudRegistrarMascota.getMascota());
+        List<Cupon> cupones = new ArrayList<>();
+        cupones.add(Cupon.crear(solicitudRegistrarMascota.getMascota()));
+        return new Mascota(solicitudRegistrarMascota.getMascota(), cupones);
     }
 
     public static Mascota construir(String codigoMascota, String nombre, Long tipoMascota) {
@@ -70,5 +79,9 @@ public class Mascota {
 
     public Long getTipoMascota() {
         return tipoMascota;
+    }
+
+    public List<Cupon> getCupones() {
+        return cupones;
     }
 }

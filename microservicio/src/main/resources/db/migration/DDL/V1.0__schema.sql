@@ -37,6 +37,15 @@ create table mascota (
  primary key (id)
 );
 
+create table cupon_descuento (
+ id int(11) not null auto_increment,
+ codigo_cupon varchar(50) not null,
+ id_mascota int(11) not null,
+ valor_descuento double precision not null,
+ fecha_vigencia date not null,
+ primary key (id)
+);
+
 ALTER TABLE factura
 ADD CONSTRAINT cliente_fk
   FOREIGN KEY (id_cliente)
@@ -55,5 +64,12 @@ ALTER TABLE producto_facturar
 ADD CONSTRAINT factura_fk
   FOREIGN KEY (id_factura)
   REFERENCES factura (id)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+ALTER TABLE cupon_descuento
+ADD CONSTRAINT mascota_fk
+  FOREIGN KEY (id_mascota)
+  REFERENCES mascota (id)
   ON DELETE NO ACTION
   ON UPDATE NO ACTION;
