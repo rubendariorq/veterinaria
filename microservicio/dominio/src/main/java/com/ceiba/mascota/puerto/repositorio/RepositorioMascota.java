@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface RepositorioMascota {
     Mascota guardar(Mascota mascota);
+    Mascota obtener(Long idMascota);
 }

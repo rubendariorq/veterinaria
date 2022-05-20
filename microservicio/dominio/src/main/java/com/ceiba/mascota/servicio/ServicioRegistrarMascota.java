@@ -1,6 +1,5 @@
 package com.ceiba.mascota.servicio;
 
-import com.ceiba.cupon.entidad.Cupon;
 import com.ceiba.mascota.modelo.entidad.Mascota;
 import com.ceiba.mascota.modelo.entidad.SolicitudRegistrarMascota;
 import com.ceiba.mascota.puerto.repositorio.RepositorioMascota;

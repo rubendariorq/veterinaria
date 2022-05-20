@@ -1,7 +1,6 @@
 package com.ceiba.mascota.controlador;
 
 import com.ceiba.ComandoRespuesta;
-import com.ceiba.factura.comando.ComandoSolicitudFacturar;
 import com.ceiba.mascota.comando.ComandoSolicitudRegistrarMascota;
 import com.ceiba.mascota.comando.manejador.ManejadorRegistrarMascota;
 import com.ceiba.mascota.modelo.entidad.Mascota;

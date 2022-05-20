@@ -16,7 +16,6 @@ public class Mascota {
     private String codigoMascota;
     private String nombre;
     private Long tipoMascota;
-
     private List<Cupon> cupones;
 
     private Mascota (Mascota mascota, List<Cupon> cupon) {
@@ -36,34 +35,35 @@ public class Mascota {
 
     public static Mascota crear(SolicitudRegistrarMascota solicitudRegistrarMascota) {
         ValidadorArgumento.validarObligatorio(solicitudRegistrarMascota.getMascota(), "La mascota es requerida");
-        if (!TIPO_MASCOTA_GATO.equals(solicitudRegistrarMascota.getMascota().getTipoMascota())
-                && !TIPO_MASCOTA_PERRO.equals(solicitudRegistrarMascota.getMascota().getTipoMascota())) {
-            throw new ExcepcionValorInvalido("Tipo de mascota no permitido en la veterinaria");
-        }
+        validarTipoMascota(solicitudRegistrarMascota.getMascota().getTipoMascota());
+
         List<Cupon> cupones = new ArrayList<>();
         cupones.add(Cupon.crear(solicitudRegistrarMascota.getMascota()));
         return new Mascota(solicitudRegistrarMascota.getMascota(), cupones);
     }
 
     public static Mascota construir(String codigoMascota, String nombre, Long tipoMascota) {
-        ValidadorArgumento.validarObligatorio(codigoMascota, "El código de la mascota es requerido");
-        ValidadorArgumento.validarObligatorio(nombre, "El nombre de la mascota es requerido");
-        ValidadorArgumento.validarObligatorio(tipoMascota, "El tipo de mascota es requerido");
-        if (!TIPO_MASCOTA_GATO.equals(tipoMascota) && !TIPO_MASCOTA_PERRO.equals(tipoMascota)) {
-            throw new ExcepcionValorInvalido("Tipo de mascota no permitido en la veterinaria");
-        }
+        validarArgumentosComunes(codigoMascota,nombre,tipoMascota);
         return new Mascota(null, codigoMascota, nombre, tipoMascota, null);
     }
 
     public static Mascota reconstruir(Long id, String codigoMascota, String nombre, Long tipoMascota, List<Cupon> cupones) {
         ValidadorArgumento.validarObligatorio(id, "El id es requerido");
+        validarArgumentosComunes(codigoMascota,nombre,tipoMascota);
+        return new Mascota(id, codigoMascota, nombre, tipoMascota, cupones);
+    }
+
+    private static void validarArgumentosComunes(String codigoMascota, String nombre, Long tipoMascota) {
         ValidadorArgumento.validarObligatorio(codigoMascota, "El código de la mascota es requerido");
         ValidadorArgumento.validarObligatorio(nombre, "El nombre de la mascota es requerido");
         ValidadorArgumento.validarObligatorio(tipoMascota, "El tipo de mascota es requerido");
+        validarTipoMascota(tipoMascota);
+    }
+
+    private static void validarTipoMascota(Long tipoMascota) {
         if (!TIPO_MASCOTA_GATO.equals(tipoMascota) && !TIPO_MASCOTA_PERRO.equals(tipoMascota)) {
             throw new ExcepcionValorInvalido("Tipo de mascota no permitido en la veterinaria");
         }
-        return new Mascota(id, codigoMascota, nombre, tipoMascota, cupones);
     }
 
     public Long getId() {

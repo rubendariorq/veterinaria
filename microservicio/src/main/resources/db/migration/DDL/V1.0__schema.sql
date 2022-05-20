@@ -46,6 +46,24 @@ create table cupon_descuento (
  primary key (id)
 );
 
+create table servicio (
+ id int(11) not null auto_increment,
+ descripcion text not null,
+ valor double precision not null,
+ primary key (id)
+);
+
+create table tratamiento (
+ id int(11) not null auto_increment,
+ codigo_tratamiento varchar(8) not null,
+ id_mascota int(11) not null,
+ fecha_inicio date not null,
+ fecha_fin date not null,
+ tipo_tratamiento int(11) not null,
+ id_servicio int(11) not null,
+ primary key (id)
+);
+
 ALTER TABLE factura
 ADD CONSTRAINT cliente_fk
   FOREIGN KEY (id_cliente)
@@ -68,8 +86,21 @@ ADD CONSTRAINT factura_fk
   ON UPDATE NO ACTION;
 
 ALTER TABLE cupon_descuento
-ADD CONSTRAINT mascota_fk
+ADD CONSTRAINT cupo_masc_fk
   FOREIGN KEY (id_mascota)
   REFERENCES mascota (id)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+ALTER TABLE tratamiento
+ADD CONSTRAINT trat_masc_fk
+  FOREIGN KEY (id_mascota)
+  REFERENCES mascota (id)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+ALTER TABLE tratamiento
+ADD CONSTRAINT servicio_fk
+  FOREIGN KEY (id_servicio)
+  REFERENCES servicio (id)
   ON DELETE NO ACTION
   ON UPDATE NO ACTION;

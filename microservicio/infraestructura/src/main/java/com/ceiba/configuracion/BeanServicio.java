@@ -5,6 +5,8 @@ import com.ceiba.factura.servicio.ServicioAnular;
 import com.ceiba.factura.servicio.ServicioFacturar;
 import com.ceiba.mascota.puerto.repositorio.RepositorioMascota;
 import com.ceiba.mascota.servicio.ServicioRegistrarMascota;
+import com.ceiba.tratamiento.puerto.repositorio.RepositorioTratamiento;
+import com.ceiba.tratamiento.servicio.ServicioIniciarTratamiento;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -25,6 +27,12 @@ public class BeanServicio {
     public ServicioRegistrarMascota servicioRegistrarMascota(RepositorioMascota repositorioMascota) {
         return new ServicioRegistrarMascota(repositorioMascota);
     }
+
+    @Bean
+    public ServicioIniciarTratamiento servicioIniciarTratamiento(RepositorioTratamiento repositorioTratamiento) {
+        return new ServicioIniciarTratamiento(repositorioTratamiento);
+    }
+
 
 
 }

@@ -1,8 +1,10 @@
 package com.ceiba.mascota.adaptador.repositorio;
 
+import com.ceiba.cliente.adaptador.repositorio.MapeoCliente;
 import com.ceiba.cupon.entidad.Cupon;
 import com.ceiba.cupon.puerto.repositorio.RepositorioCupon;
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
+import com.ceiba.infraestructura.jdbc.EjecucionBaseDeDatos;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
 import com.ceiba.mascota.modelo.entidad.Mascota;
 import com.ceiba.mascota.puerto.repositorio.RepositorioMascota;
@@ -23,6 +25,8 @@ public class RepositorioMascotaMysql implements RepositorioMascota {
 
     @SqlStatement(namespace = "mascota", value = "crear")
     private static String sqlCrear;
+    @SqlStatement(namespace = "mascota", value = "obtenerporid")
+    private static String sqlObtenerPorId;
 
     @Override
     public Mascota guardar(Mascota mascota) {
@@ -33,5 +37,14 @@ public class RepositorioMascotaMysql implements RepositorioMascota {
         Long idMascota = this.customNamedParameterJdbcTemplate.crear(paramSource, sqlCrear);
         repositorioCupon.guardar(mascota.getCupones(), idMascota);
         return Mascota.reconstruir(idMascota, mascota.getCodigoMascota(), mascota.getNombre(), mascota.getTipoMascota(), mascota.getCupones());
+    }
+
+    @Override
+    public Mascota obtener(Long idMascota) {
+        MapSqlParameterSource paramSource = new MapSqlParameterSource();
+        paramSource.addValue("id", idMascota);
+        return EjecucionBaseDeDatos.obtenerUnObjetoONull(() ->
+                this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlObtenerPorId,
+                        paramSource, new MapeoMascota()));
     }
 }
