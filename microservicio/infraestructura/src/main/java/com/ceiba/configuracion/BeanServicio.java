@@ -1,5 +1,6 @@
 package com.ceiba.configuracion;
 
+import com.ceiba.cupon.puerto.repositorio.RepositorioCupon;
 import com.ceiba.factura.puerto.repositorio.RepositorioFactura;
 import com.ceiba.factura.servicio.ServicioAnular;
 import com.ceiba.factura.servicio.ServicioFacturar;
@@ -24,8 +25,9 @@ public class BeanServicio {
         return new ServicioAnular(repositorioFactura);
     }
     @Bean
-    public ServicioRegistrarMascota servicioRegistrarMascota(RepositorioMascota repositorioMascota) {
-        return new ServicioRegistrarMascota(repositorioMascota);
+    public ServicioRegistrarMascota servicioRegistrarMascota(RepositorioMascota repositorioMascota,
+                                                             RepositorioCupon repositorioCupon) {
+        return new ServicioRegistrarMascota(repositorioMascota, repositorioCupon);
     }
 
     @Bean

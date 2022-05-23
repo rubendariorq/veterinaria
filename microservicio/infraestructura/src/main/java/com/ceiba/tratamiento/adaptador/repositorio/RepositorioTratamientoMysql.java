@@ -33,15 +33,15 @@ public class RepositorioTratamientoMysql implements RepositorioTratamiento {
     public Tratamiento guardar(Tratamiento tratamiento) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("codigo_tratamiento", tratamiento.getCodigoTratamiento());
-        paramSource.addValue("id_mascota", tratamiento.getIdMascota());
+        paramSource.addValue("id_mascota", tratamiento.getMascota().getId());
         paramSource.addValue("fecha_inicio", tratamiento.getFechaInicio());
         paramSource.addValue("fecha_fin", tratamiento.getFechaFin());
         paramSource.addValue("tipo_tratamiento", tratamiento.getTipoTratamiento());
-        paramSource.addValue("id_servicio", tratamiento.getIdServicio());
+        paramSource.addValue("id_servicio", tratamiento.getServicio().getId());
         paramSource.addValue("valor", tratamiento.getValor());
-        Long idTratamiento = this.customNamedParameterJdbcTemplate.crear(paramSource, sqlCrear);
-        return Tratamiento.reconstruir(idTratamiento, tratamiento.getCodigoTratamiento(), tratamiento.getIdMascota(),
-                tratamiento.getFechaInicio(), tratamiento.getFechaFin(), tratamiento.getTipoTratamiento(), tratamiento.getIdServicio());
+        Long id = this.customNamedParameterJdbcTemplate.crear(paramSource, sqlCrear);
+        return Tratamiento.reconstruir(id, tratamiento.getMascota(), tratamiento.getServicio(), tratamiento.getCodigoTratamiento(),
+                tratamiento.getFechaInicio(), tratamiento.getFechaFin(), tratamiento.getTipoTratamiento(), tratamiento.getValor());
     }
 
     public Tratamiento obtener(Long idTratamiento) {

@@ -14,7 +14,7 @@ public class ServicioTratamiento {
     }
 
     public Tratamiento ejecutar(SolicitudIniciarTratamiento solicitudIniciarTratamiento) {
-        Tratamiento tratamiento = Tratamiento.crear(solicitudIniciarTratamiento);
+        Tratamiento tratamiento = solicitudIniciarTratamiento.getTratamiento();
         return repositorioTratamiento.guardar(tratamiento);
     }
 

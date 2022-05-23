@@ -11,6 +11,9 @@ import com.ceiba.mascota.puerto.repositorio.RepositorioMascota;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Repository
 public class RepositorioMascotaMysql implements RepositorioMascota {
 
@@ -29,14 +32,15 @@ public class RepositorioMascotaMysql implements RepositorioMascota {
     private static String sqlObtenerPorId;
 
     @Override
-    public Mascota guardar(Mascota mascota) {
+    public Mascota guardar(Mascota mascota, Cupon cupon) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("codigo_mascota", mascota.getCodigoMascota());
         paramSource.addValue("nombre", mascota.getNombre());
         paramSource.addValue("tipo_mascota", mascota.getTipoMascota());
         Long idMascota = this.customNamedParameterJdbcTemplate.crear(paramSource, sqlCrear);
-        repositorioCupon.guardar(mascota.getCupones(), idMascota);
-        return Mascota.reconstruir(idMascota, mascota.getCodigoMascota(), mascota.getNombre(), mascota.getTipoMascota(), mascota.getCupones());
+        Long idCupon = this.repositorioCupon.guardar(cupon, idMascota);
+        return Mascota.reconstruir(idMascota, mascota.getCodigoMascota(), mascota.getNombre(), mascota.getTipoMascota(),
+                listarCupones(idCupon));
     }
 
     @Override
@@ -46,5 +50,11 @@ public class RepositorioMascotaMysql implements RepositorioMascota {
         return EjecucionBaseDeDatos.obtenerUnObjetoONull(() ->
                 this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlObtenerPorId,
                         paramSource, new MapeoMascota()));
+    }
+
+    private List<Cupon> listarCupones(Long idCupon) {
+        List cupones = new ArrayList<>();
+        cupones.add(repositorioCupon.obtener(idCupon));
+        return cupones;
     }
 }

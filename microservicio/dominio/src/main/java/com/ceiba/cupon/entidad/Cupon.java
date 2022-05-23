@@ -19,30 +19,29 @@ public class Cupon {
     private LocalDate fechaVigencia;
 
     private Cupon(String nombre) {
-        this.codigoCupon = this.generarCodigoCupon(nombre);
+        this.codigoCupon = generarCodigoCupon(nombre);
         this.valorDescuento = VALOR_DESCUENTO;
-        this.fechaVigencia = this.calcularFecha();
+        this.fechaVigencia = calcularFecha();
     }
 
-    public static Cupon crear(Mascota mascota) {
-        ValidadorArgumento.validarObligatorio(mascota, "La mascota es requerida");
-        return new Cupon(mascota.getNombre());
+    private Cupon(Long id, String codigoCupon, Double valorDescuento, LocalDate fechaVigencia) {
+        this.id = id;
+        this.codigoCupon = codigoCupon;
+        this.valorDescuento = valorDescuento;
+        this.fechaVigencia = fechaVigencia;
     }
 
-    private String generarCodigoCupon(String nombreMascota) {
-        return nombreMascota + CUPON_BIENVENIDA;
+    public static Cupon crear(String nombreMascota) {
+        ValidadorArgumento.validarObligatorio(nombreMascota, "Nombre de la mascota requerido");
+        return new Cupon(nombreMascota);
     }
 
-    private LocalDate calcularFecha() {
-        LocalDate result = LocalDate.now();
-        int diaAgregado = 0;
-        while (diaAgregado < DIAS_HABILES_VIGENCIA_CUPON) {
-            result = result.plusDays(1);
-            if (!(result.getDayOfWeek() == DayOfWeek.SATURDAY || result.getDayOfWeek() == DayOfWeek.SUNDAY)) {
-                ++diaAgregado;
-            }
-        }
-        return result;
+    public static Cupon reconstruir(Long id, String codigoCupon, Double valorDescuento, LocalDate fechaVigencia) {
+        ValidadorArgumento.validarObligatorio(id, "El id del cupón es requerido");
+        ValidadorArgumento.validarObligatorio(codigoCupon, "El codigo del cupón es requerido");
+        ValidadorArgumento.validarObligatorio(valorDescuento, "El valor de descuento del cupón es requerido");
+        ValidadorArgumento.validarObligatorio(fechaVigencia, "La fecha de vigencia del cupón es requerida");
+        return new Cupon(id, codigoCupon, valorDescuento, fechaVigencia);
     }
 
     public Long getId() {
@@ -59,5 +58,21 @@ public class Cupon {
 
     public LocalDate getFechaVigencia() {
         return fechaVigencia;
+    }
+
+    private String generarCodigoCupon(String nombreMascota) {
+        return nombreMascota + CUPON_BIENVENIDA;
+    }
+
+    private LocalDate calcularFecha() {
+        LocalDate result = LocalDate.now();
+        int diaAgregado = 0;
+        while (diaAgregado < DIAS_HABILES_VIGENCIA_CUPON) {
+            result = result.plusDays(1);
+            if (!(result.getDayOfWeek() == DayOfWeek.SATURDAY || result.getDayOfWeek() == DayOfWeek.SUNDAY)) {
+                ++diaAgregado;
+            }
+        }
+        return result;
     }
 }

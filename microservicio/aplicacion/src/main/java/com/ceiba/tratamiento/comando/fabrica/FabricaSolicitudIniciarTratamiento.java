@@ -1,7 +1,10 @@
 package com.ceiba.tratamiento.comando.fabrica;
 
+import com.ceiba.cupon.entidad.Cupon;
+import com.ceiba.cupon.puerto.repositorio.RepositorioCupon;
 import com.ceiba.mascota.modelo.entidad.Mascota;
 import com.ceiba.mascota.puerto.repositorio.RepositorioMascota;
+import com.ceiba.servicio.entidad.Servicio;
 import com.ceiba.servicio.puerto.repositorio.RepositorioServicio;
 import com.ceiba.tratamiento.comando.ComandoSolicitudIniciarTratamiento;
 import com.ceiba.tratamiento.modelo.entidad.SolicitudIniciarTratamiento;
@@ -15,18 +18,22 @@ public class FabricaSolicitudIniciarTratamiento {
     private final RepositorioTratamiento repositorioTratamiento;
     private final RepositorioMascota repositorioMascota;
     private final RepositorioServicio repositorioServicio;
+    private final RepositorioCupon repositorioCupon;
 
-    public FabricaSolicitudIniciarTratamiento(RepositorioTratamiento repositorioTratamiento, RepositorioMascota repositorioMascota, RepositorioServicio repositorioServicio) {
+    public FabricaSolicitudIniciarTratamiento(RepositorioTratamiento repositorioTratamiento, RepositorioMascota repositorioMascota, RepositorioServicio repositorioServicio, RepositorioCupon repositorioCupon) {
         this.repositorioTratamiento = repositorioTratamiento;
         this.repositorioMascota = repositorioMascota;
         this.repositorioServicio = repositorioServicio;
+        this.repositorioCupon = repositorioCupon;
     }
 
     public SolicitudIniciarTratamiento crear(ComandoSolicitudIniciarTratamiento comando) {
-        return new SolicitudIniciarTratamiento(repositorioMascota.obtener(comando.getIdMascota()),
-                repositorioServicio.obtener(comando.getIdServicio()),
-                Tratamiento.construir(comando.getCodigoTratamiento(),
-                repositorioMascota.obtener(comando.getIdMascota()).getId(), comando.getFechaInicio(), comando.getFechaFin(),
-                comando.getTipoTratamiento(), repositorioServicio.obtener(comando.getIdServicio()).getId()));
+        Mascota mascota = repositorioMascota.obtener(comando.getIdMascota());
+        Servicio servicio = repositorioServicio.obtener(comando.getIdServicio());
+        Cupon cupon = repositorioCupon.obtener(comando.getIdCupon());
+
+        return new SolicitudIniciarTratamiento(mascota, servicio, Tratamiento.crear(mascota, servicio, cupon,
+                comando.getCodigoTratamiento(), comando.getFechaInicio(), comando.getFechaFin(),
+                comando.getTipoTratamiento()), cupon);
     }
 }

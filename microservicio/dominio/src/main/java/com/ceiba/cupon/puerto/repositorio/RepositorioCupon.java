@@ -5,5 +5,6 @@ import com.ceiba.cupon.entidad.Cupon;
 import java.util.List;
 
 public interface RepositorioCupon {
-    void guardar (List<Cupon> cupones, Long idMascota);
+    Long guardar (Cupon cupon, Long idMascota);
+    Cupon obtener(Long idCupon);
 }

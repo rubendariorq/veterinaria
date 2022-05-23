@@ -1,5 +1,6 @@
 package com.ceiba.mascota.comando.fabrica;
 
+import com.ceiba.cupon.entidad.Cupon;
 import com.ceiba.mascota.comando.ComandoSolicitudRegistrarMascota;
 import com.ceiba.mascota.modelo.entidad.Mascota;
 import com.ceiba.mascota.modelo.entidad.SolicitudRegistrarMascota;
@@ -15,9 +16,9 @@ public class FabricaSolicitudRegistrarMascota {
         this.repositorioMascota = repositorioMascota;
     }
 
-    public SolicitudRegistrarMascota crear(ComandoSolicitudRegistrarMascota comandoSolicitudRegistrarMascota) {
-        return new SolicitudRegistrarMascota(Mascota.construir(comandoSolicitudRegistrarMascota.getCodigoMascota(),
-                comandoSolicitudRegistrarMascota.getNombre(), comandoSolicitudRegistrarMascota.getTipoMascota()));
+    public SolicitudRegistrarMascota crear(ComandoSolicitudRegistrarMascota comando) {
+        return new SolicitudRegistrarMascota(Mascota.crear(comando.getCodigoMascota(),
+                comando.getNombre(), comando.getTipoMascota()), Cupon.crear(comando.getNombre()));
     }
 
 

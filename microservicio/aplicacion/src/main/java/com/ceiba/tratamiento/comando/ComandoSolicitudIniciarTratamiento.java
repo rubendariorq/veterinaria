@@ -18,4 +18,5 @@ public class ComandoSolicitudIniciarTratamiento {
     private LocalDate fechaFin;
     private Long idServicio;
     private Long tipoTratamiento;
+    private Long idCupon;
 }
