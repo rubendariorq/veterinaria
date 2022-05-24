@@ -3,10 +3,13 @@ package com.ceiba.tratamiento.adaptador.repositorio;
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.EjecucionBaseDeDatos;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
+import com.ceiba.tratamiento.adaptador.dao.MapeoResumenTratamiento;
 import com.ceiba.tratamiento.modelo.entidad.Tratamiento;
 import com.ceiba.tratamiento.puerto.repositorio.RepositorioTratamiento;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public class RepositorioTratamientoMysql implements RepositorioTratamiento {
@@ -28,6 +31,12 @@ public class RepositorioTratamientoMysql implements RepositorioTratamiento {
 
     @SqlStatement(namespace = "tratamiento", value = "eliminarporid")
     private static String sqlEliminarPorId;
+
+    @SqlStatement(namespace = "tratamiento", value = "listarpormascota")
+    private static String sqlListarTratamientosPorMascota;
+
+    @SqlStatement(namespace = "tratamiento", value = "obtenerultimotratamientomedicopormascota")
+    private static String sqlObtenerUltimoTratamientoMedicoPorMascota;
 
     @Override
     public Tratamiento guardar(Tratamiento tratamiento) {
@@ -57,5 +66,23 @@ public class RepositorioTratamientoMysql implements RepositorioTratamiento {
         EjecucionBaseDeDatos.obtenerUnObjetoONull(() -> this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
                 .update(sqlEliminarPorId, paramSource));
         return "El tratamiento " + tratamiento.getCodigoTratamiento() + " fue eliminado satisfactoriamente";
+    }
+
+    @Override
+    public List<Tratamiento> listarPorMascotayTipo(Long idMascota, Long tipoTratamiento) {
+        MapSqlParameterSource paramSource = new MapSqlParameterSource();
+        paramSource.addValue("id_mascota", idMascota);
+        paramSource.addValue("tipo_tratamiento", tipoTratamiento);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
+                .query(sqlListarTratamientosPorMascota, paramSource, mapeoTratamiento);
+    }
+
+    @Override
+    public Tratamiento obtenerUltimoTratamientoMedico(Long idMascota, Long tipoTratamiento) {
+        MapSqlParameterSource paramSource = new MapSqlParameterSource();
+        paramSource.addValue("id_mascota", idMascota);
+        paramSource.addValue("tipo_tratamiento", tipoTratamiento);
+        return EjecucionBaseDeDatos.obtenerUnObjetoONull(() -> this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
+                .queryForObject(sqlObtenerUltimoTratamientoMedicoPorMascota, paramSource, mapeoTratamiento));
     }
 }
