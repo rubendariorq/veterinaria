@@ -42,7 +42,7 @@ pipeline {
         echo '------------>Análisis de código estático<------------'
 
         sonarqubeMasQualityGatesP(sonarKey:'co.com.ceiba.adn:veterinaria.ruben.rodriguez',
-                sonarName:'CeibaADN-Veterinaria(ruben.rodriguez)',
+                sonarName:'CeibaADN-Veterinaria[ruben.rodriguez]',
                 sonarPathProperties:'./sonar-project.properties')
       }
     }
