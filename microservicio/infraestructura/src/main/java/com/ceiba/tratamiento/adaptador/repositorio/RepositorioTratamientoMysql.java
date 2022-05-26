@@ -3,7 +3,6 @@ package com.ceiba.tratamiento.adaptador.repositorio;
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.EjecucionBaseDeDatos;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
-import com.ceiba.tratamiento.adaptador.dao.MapeoResumenTratamiento;
 import com.ceiba.tratamiento.modelo.entidad.Tratamiento;
 import com.ceiba.tratamiento.puerto.repositorio.RepositorioTratamiento;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -42,10 +41,10 @@ public class RepositorioTratamientoMysql implements RepositorioTratamiento {
     public Tratamiento guardar(Tratamiento tratamiento) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("codigo_tratamiento", tratamiento.getCodigoTratamiento());
-        paramSource.addValue("id_mascota", tratamiento.getMascota().getId());
+        setearParametroIdMascota(paramSource, tratamiento.getMascota().getId());
         paramSource.addValue("fecha_inicio", tratamiento.getFechaInicio());
         paramSource.addValue("fecha_fin", tratamiento.getFechaFin());
-        paramSource.addValue("tipo_tratamiento", tratamiento.getTipoTratamiento());
+        setearParametroTipoTratamiento(paramSource, tratamiento.getTipoTratamiento());
         paramSource.addValue("id_servicio", tratamiento.getServicio().getId());
         paramSource.addValue("valor", tratamiento.getValor());
         Long id = this.customNamedParameterJdbcTemplate.crear(paramSource, sqlCrear);
@@ -71,8 +70,8 @@ public class RepositorioTratamientoMysql implements RepositorioTratamiento {
     @Override
     public List<Tratamiento> listarPorMascotayTipo(Long idMascota, Long tipoTratamiento) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("id_mascota", idMascota);
-        paramSource.addValue("tipo_tratamiento", tipoTratamiento);
+        setearParametroIdMascota(paramSource, idMascota);
+        setearParametroTipoTratamiento(paramSource, tipoTratamiento);
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
                 .query(sqlListarTratamientosPorMascota, paramSource, mapeoTratamiento);
     }
@@ -80,9 +79,16 @@ public class RepositorioTratamientoMysql implements RepositorioTratamiento {
     @Override
     public Tratamiento obtenerUltimoTratamientoMedico(Long idMascota, Long tipoTratamiento) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("id_mascota", idMascota);
-        paramSource.addValue("tipo_tratamiento", tipoTratamiento);
+        setearParametroIdMascota(paramSource, idMascota);
+        setearParametroTipoTratamiento(paramSource, tipoTratamiento);
         return EjecucionBaseDeDatos.obtenerUnObjetoONull(() -> this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
                 .queryForObject(sqlObtenerUltimoTratamientoMedicoPorMascota, paramSource, mapeoTratamiento));
+    }
+
+    private void setearParametroIdMascota(MapSqlParameterSource paramSource, Long idMascota) {
+        paramSource.addValue("id_mascota", idMascota);
+    }
+    private void setearParametroTipoTratamiento(MapSqlParameterSource paramSource, Long tipoTratamiento) {
+        paramSource.addValue("tipo_tratamiento", tipoTratamiento);
     }
 }
