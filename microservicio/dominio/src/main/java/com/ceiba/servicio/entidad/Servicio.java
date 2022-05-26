@@ -18,7 +18,7 @@ public class Servicio {
 
     public static Servicio reconstruir(Long id, String descripcion, Double valor) {
         ValidadorArgumento.validarObligatorio(id, "El id del servicio es requerido");
-        ValidadorArgumento.validarObligatorio(descripcion, "La descripción del servicio es requerido");
+        ValidadorArgumento.validarObligatorio(descripcion, "La descripción del servicio es requerida");
         ValidadorArgumento.validarObligatorio(valor, "El valor del servicio es requerido");
         return new Servicio(id, descripcion, valor);
     }
