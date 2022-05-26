@@ -6,7 +6,7 @@ import com.ceiba.servicio.entidad.Servicio;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class ServicioTest {
+class ServicioTest {
 
     @Test
     void deberiaCrearServicioExitoso() {

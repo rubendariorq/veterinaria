@@ -4,7 +4,6 @@ import com.ceiba.cupon.entidad.Cupon;
 import com.ceiba.dominio.ValidadorArgumento;
 import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Mascota {

@@ -2,14 +2,12 @@ package com.ceiba.cupon.adaptador.repositorio;
 
 import com.ceiba.cupon.entidad.Cupon;
 import com.ceiba.infraestructura.jdbc.MapperResult;
-import com.ceiba.tratamiento.modelo.entidad.Tratamiento;
 import lombok.var;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 
 @Component
 public class MapeoCupon implements RowMapper<Cupon>, MapperResult {

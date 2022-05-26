@@ -8,8 +8,6 @@ import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
 public class RepositorioCuponMysql implements RepositorioCupon {
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;

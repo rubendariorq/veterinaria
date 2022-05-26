@@ -2,7 +2,6 @@ package com.ceiba.tratamiento.adaptador.repositorio;
 
 import com.ceiba.infraestructura.jdbc.MapperResult;
 import com.ceiba.mascota.puerto.repositorio.RepositorioMascota;
-import com.ceiba.servicio.entidad.Servicio;
 import com.ceiba.servicio.puerto.repositorio.RepositorioServicio;
 import com.ceiba.tratamiento.modelo.entidad.Tratamiento;
 import lombok.var;

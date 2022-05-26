@@ -1,6 +1,5 @@
 package com.ceiba.mascota.consulta;
 
-import com.ceiba.factura.modelo.dto.ResumenFacturaDTO;
 import com.ceiba.mascota.modelo.dto.MascotaDTO;
 import com.ceiba.mascota.puerto.dao.DaoMascota;
 import org.springframework.stereotype.Component;

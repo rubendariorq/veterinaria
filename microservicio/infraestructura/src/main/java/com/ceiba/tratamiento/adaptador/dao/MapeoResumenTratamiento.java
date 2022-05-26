@@ -1,7 +1,6 @@
 package com.ceiba.tratamiento.adaptador.dao;
 
 import com.ceiba.infraestructura.jdbc.MapperResult;
-import com.ceiba.mascota.modelo.dto.MascotaDTO;
 import com.ceiba.tratamiento.modelo.dto.TratamientoDTO;
 import lombok.var;
 import org.springframework.jdbc.core.RowMapper;

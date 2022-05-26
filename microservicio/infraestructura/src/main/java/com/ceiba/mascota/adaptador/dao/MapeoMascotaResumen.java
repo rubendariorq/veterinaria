@@ -1,6 +1,5 @@
 package com.ceiba.mascota.adaptador.dao;
 
-import com.ceiba.factura.modelo.dto.ResumenFacturaDTO;
 import com.ceiba.infraestructura.jdbc.MapperResult;
 import com.ceiba.mascota.modelo.dto.MascotaDTO;
 import lombok.var;

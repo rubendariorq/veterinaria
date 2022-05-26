@@ -1,9 +1,6 @@
 package com.ceiba.servicio.entidad;
 
 import com.ceiba.dominio.ValidadorArgumento;
-import com.ceiba.tratamiento.modelo.entidad.Tratamiento;
-
-import java.time.LocalDate;
 
 public class Servicio {
     private Long id;

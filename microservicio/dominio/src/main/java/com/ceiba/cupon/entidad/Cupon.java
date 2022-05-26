@@ -1,12 +1,9 @@
 package com.ceiba.cupon.entidad;
 
 import com.ceiba.dominio.ValidadorArgumento;
-import com.ceiba.mascota.modelo.entidad.Mascota;
 
-import java.math.BigDecimal;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Cupon {
     private static final Double VALOR_DESCUENTO = 0.10;

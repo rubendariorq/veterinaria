@@ -4,7 +4,6 @@ import com.ceiba.ComandoRespuesta;
 import com.ceiba.tratamiento.comando.ComandoSolicitudIniciarTratamiento;
 import com.ceiba.tratamiento.comando.manejador.ManejadorEliminarTratamiento;
 import com.ceiba.tratamiento.comando.manejador.ManejadorIniciarTratamiento;
-import com.ceiba.tratamiento.modelo.dto.TratamientoDTO;
 import com.ceiba.tratamiento.modelo.entidad.Tratamiento;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

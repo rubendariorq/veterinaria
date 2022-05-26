@@ -1,6 +1,5 @@
 package com.ceiba.tratamiento.controlador;
 
-import com.ceiba.mascota.modelo.dto.MascotaDTO;
 import com.ceiba.tratamiento.consulta.ManejadorConsultarTratamiento;
 import com.ceiba.tratamiento.modelo.dto.TratamientoDTO;
 import io.swagger.v3.oas.annotations.Operation;

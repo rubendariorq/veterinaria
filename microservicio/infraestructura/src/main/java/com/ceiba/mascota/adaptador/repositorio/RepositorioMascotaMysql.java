@@ -1,6 +1,5 @@
 package com.ceiba.mascota.adaptador.repositorio;
 
-import com.ceiba.cliente.adaptador.repositorio.MapeoCliente;
 import com.ceiba.cupon.entidad.Cupon;
 import com.ceiba.cupon.puerto.repositorio.RepositorioCupon;
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
@@ -53,7 +52,7 @@ public class RepositorioMascotaMysql implements RepositorioMascota {
     }
 
     private List<Cupon> listarCupones(Long idCupon) {
-        List cupones = new ArrayList<>();
+        List<Cupon> cupones = new ArrayList<>();
         cupones.add(repositorioCupon.obtener(idCupon));
         return cupones;
     }
