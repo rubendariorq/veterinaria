@@ -54,7 +54,6 @@ pipeline {
         sh './gradlew --b ./build.gradle build -x test'
       }
     }
-  }
 
   post {
     success {
