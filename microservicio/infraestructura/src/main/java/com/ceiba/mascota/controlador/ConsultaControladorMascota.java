@@ -1,6 +1,5 @@
 package com.ceiba.mascota.controlador;
 
-import com.ceiba.factura.modelo.dto.ResumenFacturaDTO;
 import com.ceiba.mascota.consulta.ManejadorConsultarMascotas;
 import com.ceiba.mascota.modelo.dto.MascotaDTO;
 import io.swagger.v3.oas.annotations.Operation;
