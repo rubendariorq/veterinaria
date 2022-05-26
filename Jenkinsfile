@@ -28,11 +28,11 @@ pipeline {
     stage('Compile & Unit Tests') {
       steps{
         echo "------------>Clean Tests<------------"
-        sh 'chmod +x gradlew'
+        sh 'chmod +x ./microservicio/gradlew'
         sh './microservicio/gradlew --b ./microservicio/build.gradle clean'
 
         echo "------------>Compile & Unit Tests<------------"
-        sh 'chmod +x gradlew'
+        sh 'chmod +x ./microservicio/gradlew'
         sh './microservicio/gradlew --b ./microservicio/build.gradle test'
       }
     }
@@ -41,7 +41,7 @@ pipeline {
       steps{
         echo '------------>Análisis de código estático<------------'
 
-        sonarqubeMasQualityGatesP(sonarKey:'co.com.ceiba.adn:veterinaria-ruben.rodriguez',
+        sonarqubeMasQualityGatesP(sonarKey:'co.com.ceiba.adn:veterinaria.ruben.rodriguez',
                 sonarName:'CeibaADN-Veterinaria(ruben.rodriguez)',
                 sonarPathProperties:'./sonar-project.properties')
       }
@@ -50,7 +50,7 @@ pipeline {
     stage('Build') {
       steps {
         echo "------------>Build<------------"
-        sh './microservicio/gradlew --b ./microservicio/build.gradle test'
+        sh './microservicio/gradlew --b ./microservicio/build.gradle build -x test'
       }
     }
   }
