@@ -44,16 +44,16 @@ pipeline {
         sonarqubeMasQualityGatesP(sonarKey:'co.com.ceiba.adn:veterinaria-ruben.rodriguez',
                 sonarName:'CeibaADN-Veterinaria(ruben.rodriguez)',
                 sonarPathProperties:'./sonar-project.properties')
-        }
       }
     }
 
     stage('Build') {
       steps {
         echo "------------>Build<------------"
-        sh './microservicio/gradlew --b ./microservicio/build.gradle build -x test'
+        sh './microservicio/gradlew --b ./microservicio/build.gradle test'
       }
     }
+  }
 
   post {
     success {
