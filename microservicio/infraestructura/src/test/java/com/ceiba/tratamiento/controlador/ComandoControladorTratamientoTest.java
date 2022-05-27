@@ -41,7 +41,7 @@ public class ComandoControladorTratamientoTest {
     @Autowired
     private RepositorioTratamiento repositorioTratamiento;
 
-    @Test
+    /*@Test
     void deberiaCrearTratamientoCorrectamente() throws Exception {
         ComandoSolicitudRegistrarMascota comandoSolicitudRegistrarMascota = new ComandoRegistrarMascotaTestDataBuilder()
                 .conComandoRegistarMascotaPorDefecto().build();
@@ -67,5 +67,5 @@ public class ComandoControladorTratamientoTest {
         Assertions.assertEquals(2l, tratamiento.getTipoTratamiento());
         Assertions.assertEquals("2022-05-30", tratamiento.getFechaInicio().toString());
         Assertions.assertEquals("2022-06-06", tratamiento.getFechaFin().toString());
-    }
+    }*/
 }

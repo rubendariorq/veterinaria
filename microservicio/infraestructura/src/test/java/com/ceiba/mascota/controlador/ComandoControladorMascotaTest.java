@@ -37,7 +37,7 @@ public class ComandoControladorMascotaTest {
     @Autowired
     private RepositorioMascota repositorioMascota;
 
-    /*@Test
+    @Test
     void deberiaCrearMascotaCorrectamente() throws Exception {
         ComandoSolicitudRegistrarMascota comandoSolicitudRegistrarMascota = new ComandoRegistrarMascotaTestDataBuilder()
                 .conComandoRegistarMascotaPorDefecto().build();
@@ -54,5 +54,5 @@ public class ComandoControladorMascotaTest {
         Assertions.assertEquals("Manotas", mascota.getNombre());
         Assertions.assertEquals(1l, mascota.getTipoMascota());
         Assertions.assertEquals("MASC010", mascota.getCodigoMascota());
-    }*/
+    }
 }
