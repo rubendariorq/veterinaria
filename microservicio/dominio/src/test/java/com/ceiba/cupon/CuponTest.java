@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 
-public class CuponTest {
+class CuponTest {
 
     private static final int DIAS_HABILES_VIGENCIA_CUPON = 3;
 

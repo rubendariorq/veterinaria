@@ -10,9 +10,6 @@ import com.ceiba.mascota.puerto.repositorio.RepositorioMascota;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Repository
 public class RepositorioMascotaMysql implements RepositorioMascota {
 
@@ -37,7 +34,7 @@ public class RepositorioMascotaMysql implements RepositorioMascota {
         paramSource.addValue("nombre", mascota.getNombre());
         paramSource.addValue("tipo_mascota", mascota.getTipoMascota());
         Long idMascota = this.customNamedParameterJdbcTemplate.crear(paramSource, sqlCrear);
-        Long idCupon = this.repositorioCupon.guardar(cupon, idMascota);
+        this.repositorioCupon.guardar(cupon, idMascota);
         return Mascota.reconstruir(idMascota, mascota.getCodigoMascota(), mascota.getNombre(), mascota.getTipoMascota());
     }
 

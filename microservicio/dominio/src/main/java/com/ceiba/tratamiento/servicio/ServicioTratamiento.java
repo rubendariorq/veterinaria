@@ -5,7 +5,6 @@ import com.ceiba.tratamiento.modelo.entidad.SolicitudEliminarTratamiento;
 import com.ceiba.tratamiento.modelo.entidad.SolicitudIniciarTratamiento;
 import com.ceiba.tratamiento.modelo.entidad.Tratamiento;
 import com.ceiba.tratamiento.puerto.repositorio.RepositorioTratamiento;
-import org.omg.DynamicAny.DynAnySeqHelper;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -22,8 +21,8 @@ public class ServicioTratamiento {
 
     public Tratamiento ejecutar(SolicitudIniciarTratamiento solicitudIniciarTratamiento) {
 
-        if (repositorioTratamiento.listarPorMascotayTipo(solicitudIniciarTratamiento.getMascota().getId(),
-                TRATAMIENTO_MEDICO).size() > 0) {
+        if (!repositorioTratamiento.listarPorMascotayTipo(solicitudIniciarTratamiento.getMascota().getId(),
+                TRATAMIENTO_MEDICO).isEmpty()) {
             throw new ExcepcionSolicitudIncorrecta("La mascota " + solicitudIniciarTratamiento.getMascota().getNombre()
                     + " se encuentra con un tratamiento Médico en curso.");
         }
