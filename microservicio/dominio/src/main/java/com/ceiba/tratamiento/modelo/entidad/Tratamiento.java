@@ -134,11 +134,9 @@ public class Tratamiento {
         if (!festivoFiltrado.isEmpty()) {
             valorTratamiento *= (1 + TASA_RECARGO);
         }
-        if (this.cupon != null) {
-            if (LocalDate.now().isBefore(this.cupon.getFechaVigencia())
-                    || LocalDate.now().equals(this.cupon.getFechaVigencia())) {
+        if ((this.cupon != null) && (LocalDate.now().isBefore(this.cupon.getFechaVigencia())
+                || LocalDate.now().equals(this.cupon.getFechaVigencia()))) {
                 valorTratamiento *= (1 - this.cupon.getValorDescuento());
-            }
         }
         return valorTratamiento;
     }

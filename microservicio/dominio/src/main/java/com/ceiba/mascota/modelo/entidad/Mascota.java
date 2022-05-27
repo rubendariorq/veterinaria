@@ -7,7 +7,6 @@ public class Mascota {
 
     private static final Long TIPO_MASCOTA_GATO = 1L;
     private static final Long TIPO_MASCOTA_PERRO = 2L;
-
     private Long id;
     private String codigoMascota;
     private String nombre;
@@ -19,7 +18,7 @@ public class Mascota {
         this.tipoMascota = tipoMascota;
     }
 
-    public Mascota(Long id, String codigoMascota, String nombre, Long tipoMascota) {
+    private Mascota(Long id, String codigoMascota, String nombre, Long tipoMascota) {
         this.id = id;
         this.codigoMascota = codigoMascota;
         this.nombre = nombre;
