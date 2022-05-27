@@ -16,6 +16,6 @@ public class MapeoMascota implements RowMapper<Mascota>, MapperResult {
         var codigoMascota = resultSet.getString("codigo_mascota");
         var nombre = resultSet.getString("nombre");
         var tipoMascota = resultSet.getLong("tipo_mascota");
-        return Mascota.reconstruir(id, codigoMascota, nombre, tipoMascota, null);
+        return Mascota.reconstruir(id, codigoMascota, nombre, tipoMascota);
     }
 }
