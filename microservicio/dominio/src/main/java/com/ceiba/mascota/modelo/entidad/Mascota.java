@@ -42,9 +42,6 @@ public class Mascota {
         ValidadorArgumento.validarObligatorio(nombre, "El nombre de la mascota es requerido");
         ValidadorArgumento.validarObligatorio(tipoMascota, "El tipo de mascota es requerido");
 
-        if (!TIPO_MASCOTA_GATO.equals(tipoMascota) && !TIPO_MASCOTA_PERRO.equals(tipoMascota)) {
-            throw new ExcepcionValorInvalido("Tipo de mascota no permitido en la veterinaria");
-        }
         return new Mascota(id, codigoMascota, nombre, tipoMascota);
     }
 
