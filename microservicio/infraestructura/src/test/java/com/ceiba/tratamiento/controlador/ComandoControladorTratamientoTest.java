@@ -6,6 +6,8 @@ import com.ceiba.mascota.controlador.ComandoRegistrarMascotaTestDataBuilder;
 import com.ceiba.mascota.controlador.RespuestaMascota;
 import com.ceiba.mascota.modelo.entidad.Mascota;
 import com.ceiba.mascota.puerto.repositorio.RepositorioMascota;
+import com.ceiba.servicio.comando.ComandoSolicitudRegistrarServicio;
+import com.ceiba.servicio.controlador.ComandoRegistrarServicioTestDataBuilder;
 import com.ceiba.tratamiento.comando.ComandoSolicitudIniciarTratamiento;
 import com.ceiba.tratamiento.modelo.entidad.Tratamiento;
 import com.ceiba.tratamiento.puerto.repositorio.RepositorioTratamiento;
@@ -41,7 +43,7 @@ public class ComandoControladorTratamientoTest {
     @Autowired
     private RepositorioTratamiento repositorioTratamiento;
 
-    /*@Test
+    @Test
     void deberiaCrearTratamientoCorrectamente() throws Exception {
         ComandoSolicitudRegistrarMascota comandoSolicitudRegistrarMascota = new ComandoRegistrarMascotaTestDataBuilder()
                 .conComandoRegistarMascotaPorDefecto().build();
@@ -49,6 +51,14 @@ public class ComandoControladorTratamientoTest {
         mocMvc.perform(post("/mascota")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(comandoSolicitudRegistrarMascota)))
+                .andExpect(status().is2xxSuccessful()).andReturn();
+
+        ComandoSolicitudRegistrarServicio comandoSolicitudRegistrarServicio = new ComandoRegistrarServicioTestDataBuilder()
+                .conComandoRegistarServicioPorDefecto().build();
+
+        mocMvc.perform(post("/servicio")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(comandoSolicitudRegistrarServicio)))
                 .andExpect(status().is2xxSuccessful()).andReturn();
 
         ComandoSolicitudIniciarTratamiento comandoSolicitudIniciarTratamiento = new ComandoRegistrarTratamientoTestDataBuilder()
@@ -67,5 +77,5 @@ public class ComandoControladorTratamientoTest {
         Assertions.assertEquals(2l, tratamiento.getTipoTratamiento());
         Assertions.assertEquals("2022-05-30", tratamiento.getFechaInicio().toString());
         Assertions.assertEquals("2022-06-06", tratamiento.getFechaFin().toString());
-    }*/
+    }
 }
