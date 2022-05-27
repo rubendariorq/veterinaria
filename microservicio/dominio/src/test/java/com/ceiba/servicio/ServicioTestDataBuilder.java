@@ -11,7 +11,7 @@ public class ServicioTestDataBuilder {
     public ServicioTestDataBuilder conServicioPorDefecto() {
         this.id = 1l;
         this.descripcion = "Servicio Tipo Medico";
-        this.valor = 49999D;
+        this.valor = 50000D;
         return this;
     }
 
