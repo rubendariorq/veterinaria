@@ -1,3 +1,3 @@
 select *
-from adnveterinaria.cupon_descuento
+from cupon_descuento
 where id = :id
