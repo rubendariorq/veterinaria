@@ -1,6 +1,7 @@
 package com.ceiba.cupon.entidad;
 
 import com.ceiba.dominio.ValidadorArgumento;
+import com.ceiba.mascota.modelo.entidad.Mascota;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -15,8 +16,10 @@ public class Cupon {
     private Double valorDescuento;
     private LocalDate fechaVigencia;
 
-    private Cupon(String nombre) {
-        this.codigoCupon = generarCodigoCupon(nombre);
+    private Mascota mascota;
+
+    private Cupon(Mascota mascota) {
+        this.codigoCupon = generarCodigoCupon(mascota.getNombre());
         this.valorDescuento = VALOR_DESCUENTO;
         this.fechaVigencia = calcularFecha();
     }
@@ -28,14 +31,14 @@ public class Cupon {
         this.fechaVigencia = fechaVigencia;
     }
 
-    public static Cupon crear(String nombreMascota) {
-        ValidadorArgumento.validarObligatorio(nombreMascota, "Nombre de la mascota requerido");
-        return new Cupon(nombreMascota);
+    public static Cupon crear(Mascota mascota) {
+        ValidadorArgumento.validarObligatorio(mascota, "La mascota es requerida");
+        return new Cupon(mascota);
     }
 
     public static Cupon reconstruir(Long id, String codigoCupon, Double valorDescuento, LocalDate fechaVigencia) {
         ValidadorArgumento.validarObligatorio(id, "El id del cupón es requerido");
-        ValidadorArgumento.validarObligatorio(codigoCupon, "El codigo del cupón es requerido");
+        ValidadorArgumento.validarObligatorio(codigoCupon, "El código del cupón es requerido");
         ValidadorArgumento.validarObligatorio(valorDescuento, "El valor de descuento del cupón es requerido");
         ValidadorArgumento.validarObligatorio(fechaVigencia, "La fecha de vigencia del cupón es requerida");
         return new Cupon(id, codigoCupon, valorDescuento, fechaVigencia);

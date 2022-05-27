@@ -38,8 +38,7 @@ public class RepositorioMascotaMysql implements RepositorioMascota {
         paramSource.addValue("tipo_mascota", mascota.getTipoMascota());
         Long idMascota = this.customNamedParameterJdbcTemplate.crear(paramSource, sqlCrear);
         Long idCupon = this.repositorioCupon.guardar(cupon, idMascota);
-        return Mascota.reconstruir(idMascota, mascota.getCodigoMascota(), mascota.getNombre(), mascota.getTipoMascota(),
-                listarCupones(idCupon));
+        return Mascota.reconstruir(idMascota, mascota.getCodigoMascota(), mascota.getNombre(), mascota.getTipoMascota());
     }
 
     @Override
@@ -51,9 +50,4 @@ public class RepositorioMascotaMysql implements RepositorioMascota {
                         paramSource, new MapeoMascota()));
     }
 
-    private List<Cupon> listarCupones(Long idCupon) {
-        List<Cupon> cupones = new ArrayList<>();
-        cupones.add(repositorioCupon.obtener(idCupon));
-        return cupones;
-    }
 }

@@ -15,7 +15,6 @@ public class Mascota {
     private String codigoMascota;
     private String nombre;
     private Long tipoMascota;
-    private List<Cupon> cupones;
 
     private Mascota (String codigoMascota, String nombre, Long tipoMascota) {
         this.codigoMascota = codigoMascota;
@@ -23,12 +22,11 @@ public class Mascota {
         this.tipoMascota = tipoMascota;
     }
 
-    public Mascota(Long id, String codigoMascota, String nombre, Long tipoMascota, List<Cupon> cupones) {
+    public Mascota(Long id, String codigoMascota, String nombre, Long tipoMascota) {
         this.id = id;
         this.codigoMascota = codigoMascota;
         this.nombre = nombre;
         this.tipoMascota = tipoMascota;
-        this.cupones = cupones;
     }
 
     public static Mascota crear(String codigoMascota, String nombre, Long tipoMascota) {
@@ -42,7 +40,7 @@ public class Mascota {
         return new Mascota(codigoMascota, nombre, tipoMascota);
     }
 
-    public static Mascota reconstruir(Long id, String codigoMascota, String nombre, Long tipoMascota, List<Cupon> cupones) {
+    public static Mascota reconstruir(Long id, String codigoMascota, String nombre, Long tipoMascota) {
         ValidadorArgumento.validarObligatorio(id, "El id es requerido");
         ValidadorArgumento.validarObligatorio(codigoMascota, "El código de la mascota es requerido");
         ValidadorArgumento.validarObligatorio(nombre, "El nombre de la mascota es requerido");
@@ -51,7 +49,7 @@ public class Mascota {
         if (!TIPO_MASCOTA_GATO.equals(tipoMascota) && !TIPO_MASCOTA_PERRO.equals(tipoMascota)) {
             throw new ExcepcionValorInvalido("Tipo de mascota no permitido en la veterinaria");
         }
-        return new Mascota(id, codigoMascota, nombre, tipoMascota, cupones);
+        return new Mascota(id, codigoMascota, nombre, tipoMascota);
     }
 
     public Long getId() {
@@ -70,7 +68,4 @@ public class Mascota {
         return tipoMascota;
     }
 
-    public List<Cupon> getCupones() {
-        return cupones;
-    }
 }

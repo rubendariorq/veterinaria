@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 public class FabricaSolicitudRegistrarMascota {
 
     public SolicitudRegistrarMascota crear(ComandoSolicitudRegistrarMascota comando) {
-        return new SolicitudRegistrarMascota(Mascota.crear(comando.getCodigoMascota(),
-                comando.getNombre(), comando.getTipoMascota()), Cupon.crear(comando.getNombre()));
+        Mascota mascota = Mascota.crear(comando.getCodigoMascota(), comando.getNombre(), comando.getTipoMascota());
+        return new SolicitudRegistrarMascota(mascota, Cupon.crear(mascota));
     }
 
 
