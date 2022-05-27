@@ -9,7 +9,34 @@ import org.junit.jupiter.api.Test;
 class ServicioTest {
 
     @Test
-    void deberiaCrearServicioExitoso() {
+    void deberiaCrearServicioCorrectamente() {
+        Servicio servicio = new ServicioTestDataBuilder()
+                .conDescripcion("Servicio Tipo Medico")
+                .conValor(50000D)
+                .crear();
+
+        Assertions.assertEquals("Servicio Tipo Medico", servicio.getDescripcion());
+        Assertions.assertEquals(50000D, servicio.getValor());
+    }
+
+    @Test
+    void deberiaFallarCreacionServicioSinDescripcion() {
+        BasePrueba.assertThrows(() -> new ServicioTestDataBuilder()
+                        .conValor(45900D)
+                        .crear(), ExcepcionValorObligatorio.class,
+                "La descripción del servicio es requerida");
+    }
+
+    @Test
+    void deberiaFallarCreacionServicioSinValor() {
+        BasePrueba.assertThrows(() -> new ServicioTestDataBuilder()
+                        .conDescripcion("Servicio Tipo Medico")
+                        .crear(), ExcepcionValorObligatorio.class,
+                "El valor del servicio es requerido");
+    }
+
+    @Test
+    void deberiaReconstruirServicioExitoso() {
 
         Servicio servicio = new ServicioTestDataBuilder()
                 .conId(1l)

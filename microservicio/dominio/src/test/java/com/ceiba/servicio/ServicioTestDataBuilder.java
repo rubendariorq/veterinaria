@@ -30,6 +30,10 @@ public class ServicioTestDataBuilder {
         return this;
     }
 
+    public Servicio crear() {
+        return Servicio.crear(descripcion, valor);
+    }
+
     public Servicio reconstruir() {
         return Servicio.reconstruir(id, descripcion, valor);
     }
