@@ -15,9 +15,9 @@ import java.util.stream.Collectors;
 public class Tratamiento {
 
     private static final Double TASA_RECARGO = 0.15D;
-    private static final String[] DIAS_FESTIVOS_2022 = {"01-01-2022", "10-01-2022", "21-03-2022", "14-04-2022", "15-04-2022", "01-05-2022",
-            "30-05-2022", "20-06-2022", "27-06-2022", "04-07-2022", "20-07-2022", "07-08-2022", "15-08-2022", "17-10-2022",
-            "07-11-2022", "14-11-2022", "08-12-2022", "25-12-2022"};
+    private static final String[] DIAS_FESTIVOS_2022 = {"2022-01-01", "2022-01-10", "2022-03-21", "2022-04-14", "2022-04-15", "2022-05-01",
+            "2022-05-30", "2022-06-20", "2022-06-27", "2022-07-04", "2022-07-20", "2022-08-07", "2022-08-15", "2022-10-17",
+            "2022-11-07", "2022-11-14", "2022-12-08", "2022-12-25"};
 
     private Long id;
     private String codigoTratamiento;
@@ -27,6 +27,7 @@ public class Tratamiento {
     private Mascota mascota;
     private Servicio servicio;
     private Double valor;
+    private Cupon cupon;
 
     private Tratamiento (Mascota mascota, Servicio servicio, Cupon cupon, String codigoTratamiento, LocalDate fechaInicio,
                          LocalDate fechaFin, Long tipoTratamiento) {
@@ -36,7 +37,8 @@ public class Tratamiento {
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.tipoTratamiento = tipoTratamiento;
-        this.valor = calcularValorTratamiento(servicio, cupon);
+        this.cupon = cupon;
+        this.valor = calcularValorTratamiento();
     }
 
     private Tratamiento(Long id, Mascota mascota, Servicio servicio, String codigoTratamiento, LocalDate fechaInicio,
@@ -55,7 +57,6 @@ public class Tratamiento {
                                     LocalDate fechaInicio, LocalDate fechaFin, Long tipoTratamiento) {
         ValidadorArgumento.validarObligatorio(mascota, "La mascota es requerida");
         ValidadorArgumento.validarObligatorio(servicio, "El servicio es requerido");
-        ValidadorArgumento.validarObligatorio(cupon, "El cupón es requerido");
         ValidadorArgumento.validarObligatorio(codigoTratamiento, "El código del tratamiento es requerido");
         ValidadorArgumento.validarObligatorio(fechaInicio, "Debe indicar una fecha de inicio");
         ValidadorArgumento.validarObligatorio(fechaFin, "Debe indicar una fecha de finalización");
@@ -67,6 +68,14 @@ public class Tratamiento {
 
     public static Tratamiento reconstruir(Long id, Mascota mascota, Servicio servicio, String codigoTratamiento,
                                           LocalDate fechaInicio, LocalDate fechaFin, Long tipoTratamiento, Double valor) {
+        ValidadorArgumento.validarObligatorio(id, "El id de la mascota es requerido");
+        ValidadorArgumento.validarObligatorio(mascota, "La mascota es requerida");
+        ValidadorArgumento.validarObligatorio(servicio, "El servicio es requerido");
+        ValidadorArgumento.validarObligatorio(codigoTratamiento, "El código del tratamiento es requerido");
+        ValidadorArgumento.validarObligatorio(fechaInicio, "Debe indicar una fecha de inicio");
+        ValidadorArgumento.validarObligatorio(fechaFin, "Debe indicar una fecha de finalización");
+        ValidadorArgumento.validarObligatorio(tipoTratamiento, "Debe indicar el tipo de tratamiento");
+        ValidadorArgumento.validarObligatorio(valor, "Debe indicar el valor del tratamiento");
         return new Tratamiento(id, mascota, servicio, codigoTratamiento, fechaInicio, fechaFin, tipoTratamiento, valor);
     }
 
@@ -115,19 +124,21 @@ public class Tratamiento {
         return (dia.getDayOfWeek() == DayOfWeek.SATURDAY || dia.getDayOfWeek() == DayOfWeek.SUNDAY);
     }
 
-    private Double calcularValorTratamiento(Servicio servicio, Cupon cupon) {
-        Double valorTratamiento = servicio.getValor();
+    private Double calcularValorTratamiento() {
+        Double valorTratamiento = this.servicio.getValor();
 
         List<String> festivoFiltrado = Arrays.stream(DIAS_FESTIVOS_2022)
-                .filter(dia -> dia.equals(LocalDate.now().toString()))
+                .filter(dia -> dia.equals(this.fechaInicio.toString()))
                 .collect(Collectors.toList());
 
         if (!festivoFiltrado.isEmpty()) {
             valorTratamiento *= (1 + TASA_RECARGO);
         }
-        if (LocalDate.now().isBefore(cupon.getFechaVigencia())
-                || LocalDate.now().equals(cupon.getFechaVigencia())) {
-            valorTratamiento *= (1 - cupon.getValorDescuento());
+        if (this.cupon != null) {
+            if (LocalDate.now().isBefore(this.cupon.getFechaVigencia())
+                    || LocalDate.now().equals(this.cupon.getFechaVigencia())) {
+                valorTratamiento *= (1 - this.cupon.getValorDescuento());
+            }
         }
         return valorTratamiento;
     }
