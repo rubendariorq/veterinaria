@@ -1,10 +1,7 @@
 package com.ceiba.mascota.modelo.entidad;
 
-import com.ceiba.cupon.entidad.Cupon;
 import com.ceiba.dominio.ValidadorArgumento;
 import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
-
-import java.util.List;
 
 public class Mascota {
 
@@ -41,7 +38,7 @@ public class Mascota {
     }
 
     public static Mascota reconstruir(Long id, String codigoMascota, String nombre, Long tipoMascota) {
-        ValidadorArgumento.validarObligatorio(id, "El id es requerido");
+        ValidadorArgumento.validarObligatorio(id, "El id de la mascota es requerido");
         ValidadorArgumento.validarObligatorio(codigoMascota, "El código de la mascota es requerido");
         ValidadorArgumento.validarObligatorio(nombre, "El nombre de la mascota es requerido");
         ValidadorArgumento.validarObligatorio(tipoMascota, "El tipo de mascota es requerido");
