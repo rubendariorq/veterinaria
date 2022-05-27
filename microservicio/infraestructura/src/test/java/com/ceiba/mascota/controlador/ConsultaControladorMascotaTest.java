@@ -38,9 +38,6 @@ class ConsultaControladorMascotaTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @Autowired
-    private DaoMascota daoMascota;
-
     @Test
     void deberiaListarMascotasCorrectamente() throws Exception {
 
@@ -52,21 +49,12 @@ class ConsultaControladorMascotaTest {
                         .content(objectMapper.writeValueAsString(comandoSolicitudRegistrarMascota)))
                 .andExpect(status().is2xxSuccessful()).andReturn();
 
-        mockMvc.perform(post("/mascota")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(comandoSolicitudRegistrarMascota)))
-                .andExpect(status().is2xxSuccessful()).andReturn();
-
-        MvcResult resultado = mockMvc.perform(get("/mascota")
+        mockMvc.perform(get("/mascota")
                         .contentType(MediaType.APPLICATION_JSON))
-                        .andExpect(status().is2xxSuccessful()).andReturn();
-
-        String jsonResult = resultado.getResponse().getContentAsString();
-        RespuestaMascotas respuestaMascotas = objectMapper.readValue(jsonResult, RespuestaMascotas.class);
-
-        Assertions.assertEquals(1l, respuestaMascotas.getValor().get(0).getId());
-        Assertions.assertEquals("MASC010", respuestaMascotas.getValor().get(0).getCodigoMascota());
-        Assertions.assertEquals("Manotas", respuestaMascotas.getValor().get(0).getNombre());
-        Assertions.assertEquals(1l, respuestaMascotas.getValor().get(0).getTipoMascota());
+                .andExpect(status().is2xxSuccessful())
+                .andExpect(jsonPath("$[0].id", is(1)))
+                .andExpect(jsonPath("$[0].codigoMascota", is("MASC010")))
+                .andExpect(jsonPath("$[0].nombre", is("Manotas")))
+                .andExpect(jsonPath("$[0].tipoMascota", is(1)));
     }
 }
