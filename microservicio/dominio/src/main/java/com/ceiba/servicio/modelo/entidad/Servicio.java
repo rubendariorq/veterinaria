@@ -1,4 +1,4 @@
-package com.ceiba.servicio.entidad;
+package com.ceiba.servicio.modelo.entidad;
 
 import com.ceiba.dominio.ValidadorArgumento;
 

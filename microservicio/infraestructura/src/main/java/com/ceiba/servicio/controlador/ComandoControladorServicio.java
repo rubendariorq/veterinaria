@@ -3,7 +3,7 @@ package com.ceiba.servicio.controlador;
 import com.ceiba.ComandoRespuesta;
 import com.ceiba.servicio.comando.ComandoSolicitudRegistrarServicio;
 import com.ceiba.servicio.comando.manejador.ManejadorCrearServicio;
-import com.ceiba.servicio.entidad.Servicio;
+import com.ceiba.servicio.modelo.entidad.Servicio;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;

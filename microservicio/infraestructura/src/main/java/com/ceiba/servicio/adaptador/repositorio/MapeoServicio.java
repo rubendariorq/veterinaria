@@ -1,7 +1,7 @@
 package com.ceiba.servicio.adaptador.repositorio;
 
 import com.ceiba.infraestructura.jdbc.MapperResult;
-import com.ceiba.servicio.entidad.Servicio;
+import com.ceiba.servicio.modelo.entidad.Servicio;
 import lombok.var;
 import org.springframework.jdbc.core.RowMapper;
 

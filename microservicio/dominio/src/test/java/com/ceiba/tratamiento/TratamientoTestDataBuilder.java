@@ -4,7 +4,7 @@ import com.ceiba.cupon.entidad.Cupon;
 import com.ceiba.mascota.MascotaTestDataBuilder;
 import com.ceiba.mascota.modelo.entidad.Mascota;
 import com.ceiba.servicio.ServicioTestDataBuilder;
-import com.ceiba.servicio.entidad.Servicio;
+import com.ceiba.servicio.modelo.entidad.Servicio;
 import com.ceiba.tratamiento.modelo.entidad.Tratamiento;
 
 import java.time.LocalDate;

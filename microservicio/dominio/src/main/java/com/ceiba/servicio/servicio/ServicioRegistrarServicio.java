@@ -1,7 +1,7 @@
 package com.ceiba.servicio.servicio;
 
-import com.ceiba.servicio.entidad.Servicio;
-import com.ceiba.servicio.entidad.SolicitudRegistrarServicio;
+import com.ceiba.servicio.modelo.entidad.Servicio;
+import com.ceiba.servicio.modelo.entidad.SolicitudRegistrarServicio;
 import com.ceiba.servicio.puerto.repositorio.RepositorioServicio;
 
 public class ServicioRegistrarServicio {

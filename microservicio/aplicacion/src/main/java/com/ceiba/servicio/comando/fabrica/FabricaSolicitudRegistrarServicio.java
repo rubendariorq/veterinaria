@@ -1,11 +1,8 @@
 package com.ceiba.servicio.comando.fabrica;
 
-import com.ceiba.cupon.entidad.Cupon;
-import com.ceiba.mascota.modelo.entidad.Mascota;
-import com.ceiba.mascota.modelo.entidad.SolicitudRegistrarMascota;
 import com.ceiba.servicio.comando.ComandoSolicitudRegistrarServicio;
-import com.ceiba.servicio.entidad.Servicio;
-import com.ceiba.servicio.entidad.SolicitudRegistrarServicio;
+import com.ceiba.servicio.modelo.entidad.Servicio;
+import com.ceiba.servicio.modelo.entidad.SolicitudRegistrarServicio;
 import org.springframework.stereotype.Component;
 
 @Component

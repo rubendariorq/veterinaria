@@ -1,6 +1,6 @@
 package com.ceiba.servicio;
 
-import com.ceiba.servicio.entidad.Servicio;
+import com.ceiba.servicio.modelo.entidad.Servicio;
 
 public class ServicioTestDataBuilder {
 

@@ -4,7 +4,7 @@ import com.ceiba.cupon.entidad.Cupon;
 import com.ceiba.dominio.ValidadorArgumento;
 import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.mascota.modelo.entidad.Mascota;
-import com.ceiba.servicio.entidad.Servicio;
+import com.ceiba.servicio.modelo.entidad.Servicio;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;

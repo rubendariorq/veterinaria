@@ -4,7 +4,7 @@ import com.ceiba.cupon.entidad.Cupon;
 import com.ceiba.cupon.puerto.repositorio.RepositorioCupon;
 import com.ceiba.mascota.modelo.entidad.Mascota;
 import com.ceiba.mascota.puerto.repositorio.RepositorioMascota;
-import com.ceiba.servicio.entidad.Servicio;
+import com.ceiba.servicio.modelo.entidad.Servicio;
 import com.ceiba.servicio.puerto.repositorio.RepositorioServicio;
 import com.ceiba.tratamiento.comando.ComandoSolicitudIniciarTratamiento;
 import com.ceiba.tratamiento.modelo.entidad.SolicitudIniciarTratamiento;

@@ -4,7 +4,7 @@ import com.ceiba.ComandoRespuesta;
 import com.ceiba.manejador.ManejadorComandoRespuesta;
 import com.ceiba.servicio.comando.ComandoSolicitudRegistrarServicio;
 import com.ceiba.servicio.comando.fabrica.FabricaSolicitudRegistrarServicio;
-import com.ceiba.servicio.entidad.Servicio;
+import com.ceiba.servicio.modelo.entidad.Servicio;
 import com.ceiba.servicio.servicio.ServicioRegistrarServicio;
 import org.springframework.stereotype.Component;
 
