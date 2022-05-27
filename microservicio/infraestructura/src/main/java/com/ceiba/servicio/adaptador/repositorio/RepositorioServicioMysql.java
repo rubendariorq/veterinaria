@@ -13,6 +13,8 @@ public class RepositorioServicioMysql implements RepositorioServicio {
 
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
 
+    @SqlStatement(namespace = "servicio", value = "crear")
+    private static String sqlCrear;
     @SqlStatement(namespace = "servicio", value = "obtenerporid")
     private static String sqlObtenerPorId;
 
@@ -27,5 +29,14 @@ public class RepositorioServicioMysql implements RepositorioServicio {
         return EjecucionBaseDeDatos.obtenerUnObjetoONull(() ->
                 this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlObtenerPorId,
                         paramSource, new MapeoServicio()));
+    }
+
+    @Override
+    public Servicio guardar(Servicio servicio) {
+        MapSqlParameterSource paramSource = new MapSqlParameterSource();
+        paramSource.addValue("descripcion", servicio.getDescripcion());
+        paramSource.addValue("valor", servicio.getValor());
+        Long id = this.customNamedParameterJdbcTemplate.crear(paramSource, sqlCrear);
+        return Servicio.reconstruir(id, servicio.getDescripcion(), servicio.getValor());
     }
 }

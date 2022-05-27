@@ -7,10 +7,21 @@ public class Servicio {
     private String descripcion;
     private Double valor;
 
+    public Servicio(String descripcion, Double valor) {
+        this.descripcion = descripcion;
+        this.valor = valor;
+    }
+
     public Servicio(Long id, String descripcion, Double valor) {
         this.id = id;
         this.descripcion = descripcion;
         this.valor = valor;
+    }
+
+    public static Servicio crear(String descripcion, Double valor) {
+        ValidadorArgumento.validarObligatorio(descripcion, "La descripción del servicio es requerida");
+        ValidadorArgumento.validarObligatorio(valor, "El valor del servicio es requerido");
+        return new Servicio(descripcion, valor);
     }
 
     public static Servicio reconstruir(Long id, String descripcion, Double valor) {

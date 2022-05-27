@@ -1,0 +1,1 @@
+insert into servicio(descripcion, valor ) values(:descripcion, :valor)
