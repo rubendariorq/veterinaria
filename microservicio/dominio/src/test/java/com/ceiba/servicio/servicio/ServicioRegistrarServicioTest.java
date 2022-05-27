@@ -1,17 +1,12 @@
-package com.ceiba.servicio;
+package com.ceiba.servicio.servicio;
 
+import com.ceiba.servicio.ServicioTestDataBuilder;
 import com.ceiba.servicio.modelo.entidad.Servicio;
 import com.ceiba.servicio.modelo.entidad.SolicitudRegistrarServicio;
 import com.ceiba.servicio.puerto.repositorio.RepositorioServicio;
-import com.ceiba.servicio.servicio.ServicioRegistrarServicio;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
-
-import java.math.BigDecimal;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ServicioRegistrarServicioTest {
 
