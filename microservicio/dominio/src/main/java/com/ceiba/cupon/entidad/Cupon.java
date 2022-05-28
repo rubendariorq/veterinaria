@@ -18,13 +18,13 @@ public class Cupon {
 
     private Mascota mascota;
 
-    private Cupon(Mascota mascota) {
+    public Cupon(Mascota mascota) {
         this.codigoCupon = generarCodigoCupon(mascota.getNombre());
         this.valorDescuento = VALOR_DESCUENTO;
         this.fechaVigencia = calcularFecha();
     }
 
-    private Cupon(Long id, String codigoCupon, Double valorDescuento, LocalDate fechaVigencia) {
+    public Cupon(Long id, String codigoCupon, Double valorDescuento, LocalDate fechaVigencia) {
         this.id = id;
         this.codigoCupon = codigoCupon;
         this.valorDescuento = valorDescuento;

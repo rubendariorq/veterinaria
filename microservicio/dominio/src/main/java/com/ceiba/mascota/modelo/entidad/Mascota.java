@@ -12,13 +12,13 @@ public class Mascota {
     private String nombre;
     private Long tipoMascota;
 
-    private Mascota (String codigoMascota, String nombre, Long tipoMascota) {
+    public Mascota (String codigoMascota, String nombre, Long tipoMascota) {
         this.codigoMascota = codigoMascota;
         this.nombre = nombre;
         this.tipoMascota = tipoMascota;
     }
 
-    private Mascota(Long id, String codigoMascota, String nombre, Long tipoMascota) {
+    public Mascota(Long id, String codigoMascota, String nombre, Long tipoMascota) {
         this.id = id;
         this.codigoMascota = codigoMascota;
         this.nombre = nombre;
