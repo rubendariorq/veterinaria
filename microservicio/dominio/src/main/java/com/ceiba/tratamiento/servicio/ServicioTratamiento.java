@@ -20,12 +20,9 @@ public class ServicioTratamiento {
     }
 
     public Tratamiento ejecutar(SolicitudIniciarTratamiento solicitudIniciarTratamiento) {
+        validarSiTieneTratamientoMedicoVigente(solicitudIniciarTratamiento.getMascota().getId(),
+                solicitudIniciarTratamiento.getMascota().getNombre());
 
-        if (!repositorioTratamiento.listarPorMascotayTipo(solicitudIniciarTratamiento.getMascota().getId(),
-                TRATAMIENTO_MEDICO).isEmpty()) {
-            throw new ExcepcionSolicitudIncorrecta("La mascota " + solicitudIniciarTratamiento.getMascota().getNombre()
-                    + " se encuentra con un tratamiento Médico en curso.");
-        }
         Tratamiento ultimoTratamiento = repositorioTratamiento
                 .obtenerUltimoTratamientoMedico(solicitudIniciarTratamiento.getMascota().getId(), TRATAMIENTO_MEDICO);
 
@@ -40,6 +37,14 @@ public class ServicioTratamiento {
 
         Tratamiento tratamiento = solicitudIniciarTratamiento.getTratamiento();
         return repositorioTratamiento.guardar(tratamiento);
+    }
+
+    private void validarSiTieneTratamientoMedicoVigente(Long idMascota, String nombreMascota) {
+        if (!repositorioTratamiento.listarPorMascotayTipo(idMascota,
+                TRATAMIENTO_MEDICO).isEmpty()) {
+            throw new ExcepcionSolicitudIncorrecta("La mascota " + nombreMascota
+                    + " se encuentra con un tratamiento Médico en curso.");
+        }
     }
 
     public String eliminar(SolicitudEliminarTratamiento solicitudEliminarTratamiento) {

@@ -26,7 +26,7 @@ public class TratamientoTestDataBuilder {
         this.codigoTratamiento = "TRAT001";
         this.fechaInicio = LocalDate.of(2022,06,01);
         this.fechaFin = LocalDate.of(2022,06,04);
-        this.tipoTratamiento = 1l;
+        this.tipoTratamiento = 2l;
         this.mascota = new MascotaTestDataBuilder().conId(1l).conNombre("Manotas").conTipoMascota(1l).conCodigoMascota("MASC001").reconstruir();
         this.servicio = new ServicioTestDataBuilder().conId(1l).conDescripcion("Tratamiento médico").conValor(49000D).reconstruir();
         this.valor = 49000D;
