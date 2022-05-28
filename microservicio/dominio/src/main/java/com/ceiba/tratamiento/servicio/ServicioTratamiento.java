@@ -6,7 +6,6 @@ import com.ceiba.tratamiento.modelo.entidad.SolicitudIniciarTratamiento;
 import com.ceiba.tratamiento.modelo.entidad.Tratamiento;
 import com.ceiba.tratamiento.puerto.repositorio.RepositorioTratamiento;
 
-import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 public class ServicioTratamiento {
@@ -27,11 +26,11 @@ public class ServicioTratamiento {
                 .obtenerUltimoTratamientoMedico(solicitudIniciarTratamiento.getMascota().getId(), TRATAMIENTO_MEDICO);
 
         if (ultimoTratamiento != null) {
-            Long ultimoTratammientoEnDias = ChronoUnit.DAYS.between(ultimoTratamiento.getFechaFin(), LocalDate.now());
+            Long ultimoTratammientoEnDias = ChronoUnit.DAYS.between(ultimoTratamiento.getFechaFin(), solicitudIniciarTratamiento.getTratamiento().getFechaInicio());
             if (ultimoTratammientoEnDias < DIAS_REQUERIDOS_INICIAR_TRATAMIENTO_MEDICO) {
                 throw new ExcepcionSolicitudIncorrecta("La mascota " + solicitudIniciarTratamiento.getMascota().getNombre()
                         + " finalizó el día " + ultimoTratamiento.getFechaFin() + " su tratamiento médico. Recomendable esperar "
-                        + (DIAS_REQUERIDOS_INICIAR_TRATAMIENTO_MEDICO - ultimoTratammientoEnDias) + " días más.");
+                        + (DIAS_REQUERIDOS_INICIAR_TRATAMIENTO_MEDICO - ultimoTratammientoEnDias) + " días más");
             }
         }
 

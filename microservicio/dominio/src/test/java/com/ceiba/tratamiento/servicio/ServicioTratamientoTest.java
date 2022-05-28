@@ -2,11 +2,6 @@ package com.ceiba.tratamiento.servicio;
 
 import com.ceiba.BasePrueba;
 import com.ceiba.dominio.excepcion.ExcepcionSolicitudIncorrecta;
-import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
-import com.ceiba.mascota.MascotaTestDataBuilder;
-import com.ceiba.mascota.modelo.entidad.Mascota;
-import com.ceiba.servicio.ServicioTestDataBuilder;
-import com.ceiba.servicio.modelo.entidad.Servicio;
 import com.ceiba.tratamiento.TratamientoTestDataBuilder;
 import com.ceiba.tratamiento.modelo.entidad.SolicitudEliminarTratamiento;
 import com.ceiba.tratamiento.modelo.entidad.SolicitudIniciarTratamiento;
@@ -59,7 +54,7 @@ class ServicioTratamientoTest {
     }
 
     @Test
-    void deberiaLanzarExcepcionValidandoSiRegistraUnTratamientoMedicoConUnoVigente() {
+    void deberiaLanzarExcepcionValidandoSiRegistraTratamientoMedicoConUnoVigente() {
         Tratamiento tratamiento = new TratamientoTestDataBuilder()
                 .conTratamientoPorDefecto()
                 .reconstruir();
@@ -74,5 +69,32 @@ class ServicioTratamientoTest {
         ServicioTratamiento servicioTratamiento = new ServicioTratamiento(repositorioTratamiento);
         BasePrueba.assertThrows(() -> servicioTratamiento.ejecutar(solicitudIniciarTratamiento),
                 ExcepcionSolicitudIncorrecta.class, "La mascota Manotas se encuentra con un tratamiento Médico en curso.");
+    }
+
+    @Test
+    void deberiaLanzarExcepcionValidandoSiRegistraTratamientoMedicoFinalizadoRecientementeOtro() {
+        Tratamiento tratamiento = new TratamientoTestDataBuilder()
+                .conTratamientoPorDefecto()
+                .reconstruir();
+
+        SolicitudIniciarTratamiento solicitudIniciarTratamiento = new SolicitudIniciarTratamiento(tratamiento.getMascota(), tratamiento.getServicio(), tratamiento, null);
+        RepositorioTratamiento repositorioTratamiento = Mockito.mock(RepositorioTratamiento.class);
+
+        Mockito.when(repositorioTratamiento.obtenerUltimoTratamientoMedico(Mockito.anyLong(), Mockito.anyLong()))
+                .thenReturn(new TratamientoTestDataBuilder()
+                        .conId(2l)
+                        .conCodigoTratamiento(tratamiento.getCodigoTratamiento())
+                        .conFechaInicio(LocalDate.of(2022,05,15))
+                        .conFechaFin(LocalDate.of(2022,05,30))
+                        .conTipoTratamiento(tratamiento.getTipoTratamiento())
+                        .conMascota(tratamiento.getMascota())
+                        .conServicio(tratamiento.getServicio())
+                        .conValor(tratamiento.getValor())
+                        .reconstruir()
+                );
+
+        ServicioTratamiento servicioTratamiento = new ServicioTratamiento(repositorioTratamiento);
+        BasePrueba.assertThrows(() -> servicioTratamiento.ejecutar(solicitudIniciarTratamiento),
+                ExcepcionSolicitudIncorrecta.class, "La mascota Manotas finalizó el día 2022-05-30 su tratamiento médico. Recomendable esperar 13 días más");
     }
 }

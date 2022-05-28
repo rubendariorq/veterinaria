@@ -29,7 +29,7 @@ public class Tratamiento {
     private Double valor;
     private Cupon cupon;
 
-    private Tratamiento (Mascota mascota, Servicio servicio, Cupon cupon, String codigoTratamiento, LocalDate fechaInicio,
+    public Tratamiento (Mascota mascota, Servicio servicio, Cupon cupon, String codigoTratamiento, LocalDate fechaInicio,
                          LocalDate fechaFin, Long tipoTratamiento) {
         this.mascota = mascota;
         this.servicio = servicio;
@@ -41,7 +41,7 @@ public class Tratamiento {
         this.valor = calcularValorTratamiento();
     }
 
-    private Tratamiento(Long id, Mascota mascota, Servicio servicio, String codigoTratamiento, LocalDate fechaInicio,
+    public Tratamiento(Long id, Mascota mascota, Servicio servicio, String codigoTratamiento, LocalDate fechaInicio,
                         LocalDate fechaFin, Long tipoTratamiento, Double valor) {
         this.id = id;
         this.mascota = mascota;
