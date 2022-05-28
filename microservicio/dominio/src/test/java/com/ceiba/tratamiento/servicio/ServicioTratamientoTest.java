@@ -1,6 +1,7 @@
 package com.ceiba.tratamiento.servicio;
 
 import com.ceiba.tratamiento.TratamientoTestDataBuilder;
+import com.ceiba.tratamiento.modelo.entidad.SolicitudEliminarTratamiento;
 import com.ceiba.tratamiento.modelo.entidad.SolicitudIniciarTratamiento;
 import com.ceiba.tratamiento.modelo.entidad.Tratamiento;
 import com.ceiba.tratamiento.puerto.repositorio.RepositorioTratamiento;
@@ -8,7 +9,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-public class ServicioTratamientoTest {
+class ServicioTratamientoTest {
 
     @Test
     void deberiaCrearTratamientoCorrectamente() {
@@ -29,5 +30,20 @@ public class ServicioTratamientoTest {
         Assertions.assertEquals("2022-06-04", tratamientoResp.getFechaFin().toString());
         Assertions.assertEquals(1l, tratamientoResp.getTipoTratamiento());
         Assertions.assertEquals(49000D, tratamientoResp.getValor());
+    }
+
+    @Test
+    void deberiaEliminarTratamientoCorrectamente() {
+        Tratamiento tratamiento = new TratamientoTestDataBuilder()
+                .conTratamientoPorDefecto()
+                .reconstruir();
+        SolicitudEliminarTratamiento solicitudEliminarTratamiento = new SolicitudEliminarTratamiento(tratamiento);
+
+
+        RepositorioTratamiento repositorioTratamiento = Mockito.mock(RepositorioTratamiento.class);
+        ServicioTratamiento servicioTratamiento = new ServicioTratamiento(repositorioTratamiento);
+
+        servicioTratamiento.eliminar(solicitudEliminarTratamiento);
+        Mockito.verify(repositorioTratamiento, Mockito.times(1)).eliminar(tratamiento);
     }
 }
