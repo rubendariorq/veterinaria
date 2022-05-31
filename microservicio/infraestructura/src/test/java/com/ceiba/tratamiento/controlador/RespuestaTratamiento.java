@@ -1,6 +1,5 @@
 package com.ceiba.tratamiento.controlador;
 
-import com.ceiba.mascota.modelo.dto.MascotaDTO;
 import com.ceiba.tratamiento.modelo.dto.TratamientoDTO;
 
 public class RespuestaTratamiento {
