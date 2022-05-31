@@ -1,10 +1,13 @@
 package com.ceiba.servicio.modelo.entidad;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
-@Getter
-@AllArgsConstructor
 public class SolicitudRegistrarServicio {
     private final Servicio servicio;
+
+    public SolicitudRegistrarServicio(Servicio servicio) {
+        this.servicio = servicio;
+    }
+
+    public Servicio getServicio() {
+        return servicio;
+    }
 }
