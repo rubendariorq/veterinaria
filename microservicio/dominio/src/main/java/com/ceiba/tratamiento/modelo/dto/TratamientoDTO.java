@@ -3,11 +3,11 @@ package com.ceiba.tratamiento.modelo.dto;
 import java.time.LocalDate;
 
 public class TratamientoDTO {
-    private Long id;
-    private String codigoTratamiento;
-    private LocalDate fechaInicio;
-    private LocalDate fechaFin;
-    private Long tipoTratamiento;
+    private Long idTratamiento;
+    private String codigoDeTratamiento;
+    private LocalDate fechaDeInicio;
+    private LocalDate fechaDeFin;
+    private Long tipoDeTratamiento;
     private Long idMascota;
     private Long idServicio;
     private Double valor;
@@ -15,35 +15,35 @@ public class TratamientoDTO {
     public TratamientoDTO() {
     }
 
-    public TratamientoDTO(Long id, String codigoTratamiento, LocalDate fechaInicio, LocalDate fechaFin, Long tipoTratamiento, Long idMascota, Long idServicio, Double valor) {
-        this.id = id;
-        this.codigoTratamiento = codigoTratamiento;
-        this.fechaInicio = fechaInicio;
-        this.fechaFin = fechaFin;
-        this.tipoTratamiento = tipoTratamiento;
+    public TratamientoDTO(Long idTratamiento, String codigoDeTratamiento, LocalDate fechaDeInicio, LocalDate fechaDeFin, Long tipoDeTratamiento, Long idMascota, Long idServicio, Double valor) {
+        this.idTratamiento = idTratamiento;
+        this.codigoDeTratamiento = codigoDeTratamiento;
+        this.fechaDeInicio = fechaDeInicio;
+        this.fechaDeFin = fechaDeFin;
+        this.tipoDeTratamiento = tipoDeTratamiento;
         this.idMascota = idMascota;
         this.idServicio = idServicio;
         this.valor = valor;
     }
 
-    public Long getId() {
-        return id;
+    public Long getIdTratamiento() {
+        return idTratamiento;
     }
 
-    public String getCodigoTratamiento() {
-        return codigoTratamiento;
+    public String getCodigoDeTratamiento() {
+        return codigoDeTratamiento;
     }
 
-    public LocalDate getFechaInicio() {
-        return fechaInicio;
+    public LocalDate getFechaDeInicio() {
+        return fechaDeInicio;
     }
 
-    public LocalDate getFechaFin() {
-        return fechaFin;
+    public LocalDate getFechaDeFin() {
+        return fechaDeFin;
     }
 
-    public Long getTipoTratamiento() {
-        return tipoTratamiento;
+    public Long getTipoDeTratamiento() {
+        return tipoDeTratamiento;
     }
 
     public Long getIdMascota() {
