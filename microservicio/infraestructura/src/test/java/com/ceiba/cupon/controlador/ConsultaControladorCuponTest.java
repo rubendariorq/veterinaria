@@ -1,7 +1,8 @@
 package com.ceiba.cupon.controlador;
 
 import com.ceiba.ApplicationMock;
-import com.ceiba.servicio.comando.ComandoSolicitudRegistrarServicio;
+import com.ceiba.mascota.comando.ComandoSolicitudRegistrarMascota;
+import com.ceiba.mascota.controlador.ComandoRegistrarMascotaTestDataBuilder;
 import com.ceiba.servicio.controlador.ComandoRegistrarServicioTestDataBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -33,8 +34,20 @@ public class ConsultaControladorCuponTest {
 
     @Test
     void deberiaListarCuponesCorrectamente() throws Exception {
+
+        ComandoSolicitudRegistrarMascota comandoSolicitudRegistrarMascota = new ComandoRegistrarMascotaTestDataBuilder()
+                .conComandoRegistarMascotaPorDefecto().build();
+
+        mockMvc.perform(post("/mascota")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(comandoSolicitudRegistrarMascota)))
+                .andExpect(status().is2xxSuccessful()).andReturn();
+
         mockMvc.perform(get("/cupon/1")
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().is2xxSuccessful());
+                .andExpect(status().is2xxSuccessful())
+                .andExpect(jsonPath("$[0].id", is(1)))
+                .andExpect(jsonPath("$[0].codigoCupon", is("ManotasWELCOME")))
+                .andExpect(jsonPath("$[0].fechaVigencia", is("2022-06-08")));
     }
 }
