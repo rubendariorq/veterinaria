@@ -33,7 +33,7 @@ public class ConsultaControladorCuponTest {
 
     @Test
     void deberiaListarCuponesCorrectamente() throws Exception {
-        mockMvc.perform(get("/servicio")
+        mockMvc.perform(get("/cupon/1")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is2xxSuccessful());
     }

@@ -1,7 +1,5 @@
 package com.ceiba.cupon.modelo.dto;
 
-import com.ceiba.mascota.modelo.entidad.Mascota;
-
 import java.time.LocalDate;
 
 public class CuponDTO {
