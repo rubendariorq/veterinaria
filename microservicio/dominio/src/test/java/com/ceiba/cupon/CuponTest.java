@@ -1,11 +1,10 @@
 package com.ceiba.cupon;
 
 import com.ceiba.BasePrueba;
-import com.ceiba.cupon.entidad.Cupon;
+import com.ceiba.cupon.modelo.entidad.Cupon;
 import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
 import com.ceiba.mascota.MascotaTestDataBuilder;
 import com.ceiba.mascota.modelo.entidad.Mascota;
-import net.bytebuddy.asm.Advice;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

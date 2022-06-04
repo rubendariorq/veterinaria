@@ -1,4 +1,4 @@
-package com.ceiba.cupon.entidad;
+package com.ceiba.cupon.modelo.entidad;
 
 import com.ceiba.dominio.ValidadorArgumento;
 import com.ceiba.mascota.modelo.entidad.Mascota;

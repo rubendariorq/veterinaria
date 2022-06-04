@@ -2,7 +2,7 @@ package com.ceiba.tratamiento;
 
 import com.ceiba.BasePrueba;
 import com.ceiba.cupon.CuponTestDataBuilder;
-import com.ceiba.cupon.entidad.Cupon;
+import com.ceiba.cupon.modelo.entidad.Cupon;
 import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
 import com.ceiba.mascota.MascotaTestDataBuilder;

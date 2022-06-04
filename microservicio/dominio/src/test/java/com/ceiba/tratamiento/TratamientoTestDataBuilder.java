@@ -1,6 +1,6 @@
 package com.ceiba.tratamiento;
 
-import com.ceiba.cupon.entidad.Cupon;
+import com.ceiba.cupon.modelo.entidad.Cupon;
 import com.ceiba.mascota.MascotaTestDataBuilder;
 import com.ceiba.mascota.modelo.entidad.Mascota;
 import com.ceiba.servicio.ServicioTestDataBuilder;

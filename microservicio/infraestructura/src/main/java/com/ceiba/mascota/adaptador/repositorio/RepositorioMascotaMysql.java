@@ -1,6 +1,6 @@
 package com.ceiba.mascota.adaptador.repositorio;
 
-import com.ceiba.cupon.entidad.Cupon;
+import com.ceiba.cupon.modelo.entidad.Cupon;
 import com.ceiba.cupon.puerto.repositorio.RepositorioCupon;
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.EjecucionBaseDeDatos;

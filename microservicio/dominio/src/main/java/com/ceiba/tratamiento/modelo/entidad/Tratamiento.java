@@ -1,6 +1,6 @@
 package com.ceiba.tratamiento.modelo.entidad;
 
-import com.ceiba.cupon.entidad.Cupon;
+import com.ceiba.cupon.modelo.entidad.Cupon;
 import com.ceiba.dominio.ValidadorArgumento;
 import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.mascota.modelo.entidad.Mascota;

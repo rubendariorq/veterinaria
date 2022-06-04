@@ -1,6 +1,6 @@
-package com.ceiba.cupon.adaptador.repositorio;
+package com.ceiba.cupon.adaptador.dao;
 
-import com.ceiba.cupon.modelo.entidad.Cupon;
+import com.ceiba.cupon.modelo.dto.CuponDTO;
 import com.ceiba.infraestructura.jdbc.MapperResult;
 import lombok.var;
 import org.springframework.jdbc.core.RowMapper;
@@ -10,13 +10,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @Component
-public class MapeoCupon implements RowMapper<Cupon>, MapperResult {
+public class MapeoResumenCupon implements RowMapper<CuponDTO>, MapperResult {
     @Override
-    public Cupon mapRow(ResultSet resultSet, int rowNum) throws SQLException {
+    public CuponDTO mapRow(ResultSet resultSet, int rowNum) throws SQLException {
         var id = resultSet.getLong("id");
         var codigoCupon = resultSet.getString("codigo_cupon");
         var valorDescuento = resultSet.getDouble("valor_descuento");
         var fechaVigencia = resultSet.getDate("fecha_vigencia");
-        return Cupon.reconstruir(id, codigoCupon, valorDescuento, fechaVigencia.toLocalDate());
+        var idMascota = resultSet.getLong("id_mascota");
+        return new CuponDTO(id, codigoCupon, valorDescuento, fechaVigencia.toLocalDate(), idMascota);
     }
 }

@@ -1,6 +1,6 @@
 package com.ceiba.tratamiento.comando.fabrica;
 
-import com.ceiba.cupon.entidad.Cupon;
+import com.ceiba.cupon.modelo.entidad.Cupon;
 import com.ceiba.cupon.puerto.repositorio.RepositorioCupon;
 import com.ceiba.mascota.modelo.entidad.Mascota;
 import com.ceiba.mascota.puerto.repositorio.RepositorioMascota;
