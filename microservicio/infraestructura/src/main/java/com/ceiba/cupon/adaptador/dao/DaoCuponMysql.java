@@ -4,7 +4,6 @@ import com.ceiba.cupon.modelo.dto.CuponDTO;
 import com.ceiba.cupon.puerto.dao.DaoCupon;
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
-import com.ceiba.tratamiento.adaptador.dao.MapeoResumenTratamiento;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 

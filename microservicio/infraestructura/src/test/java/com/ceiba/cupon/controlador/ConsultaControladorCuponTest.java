@@ -15,6 +15,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+
 import static org.hamcrest.core.Is.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -26,6 +29,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ContextConfiguration(classes = ApplicationMock.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class ConsultaControladorCuponTest {
+
+    private static final int DIAS_HABILES_VIGENCIA_CUPON = 3;
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -48,6 +53,18 @@ public class ConsultaControladorCuponTest {
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(jsonPath("$[0].id", is(1)))
                 .andExpect(jsonPath("$[0].codigoCupon", is("ManotasWELCOME")))
-                .andExpect(jsonPath("$[0].fechaVigencia", is("2022-06-08")));
+                .andExpect(jsonPath("$[0].fechaVigencia", is(calcularFecha().toString())));
+    }
+
+    private LocalDate calcularFecha() {
+        LocalDate result = LocalDate.now();
+        int diaAgregado = 0;
+        while (diaAgregado < DIAS_HABILES_VIGENCIA_CUPON) {
+            result = result.plusDays(1);
+            if (!(result.getDayOfWeek() == DayOfWeek.SATURDAY || result.getDayOfWeek() == DayOfWeek.SUNDAY)) {
+                ++diaAgregado;
+            }
+        }
+        return result;
     }
 }
