@@ -25,6 +25,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -77,5 +78,41 @@ class ComandoControladorTratamientoTest {
         Assertions.assertEquals(2l, tratamiento.getTipoTratamiento());
         Assertions.assertEquals("2022-05-30", tratamiento.getFechaInicio().toString());
         Assertions.assertEquals("2022-06-06", tratamiento.getFechaFin().toString());
+    }
+
+    @Test
+    void deberiaEliminarTratamientoCorrectamente() throws Exception {
+        ComandoSolicitudRegistrarMascota comandoSolicitudRegistrarMascota = new ComandoRegistrarMascotaTestDataBuilder()
+                .conComandoRegistarMascotaPorDefecto().build();
+
+        mocMvc.perform(post("/mascota")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(comandoSolicitudRegistrarMascota)))
+                .andExpect(status().is2xxSuccessful()).andReturn();
+
+        ComandoSolicitudRegistrarServicio comandoSolicitudRegistrarServicio = new ComandoRegistrarServicioTestDataBuilder()
+                .conComandoRegistarServicioPorDefecto().build();
+
+        mocMvc.perform(post("/servicio")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(comandoSolicitudRegistrarServicio)))
+                .andExpect(status().is2xxSuccessful()).andReturn();
+
+        ComandoSolicitudIniciarTratamiento comandoSolicitudIniciarTratamiento = new ComandoRegistrarTratamientoTestDataBuilder()
+                .conComandoRegistrarTratamientoPorDefecto().build();
+
+        MvcResult resultadoTratamiento = mocMvc.perform(post("/tratamiento")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(comandoSolicitudIniciarTratamiento)))
+                .andExpect(status().is2xxSuccessful()).andReturn();
+
+        String jsonResult = resultadoTratamiento.getResponse().getContentAsString();
+        RespuestaTratamiento respuestaTratamiento = objectMapper.readValue(jsonResult, RespuestaTratamiento.class);
+        Tratamiento tratamiento = repositorioTratamiento.obtener(respuestaTratamiento.getValor().getId());
+
+        mocMvc.perform(delete("/tratamiento/" + tratamiento.getId())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(comandoSolicitudIniciarTratamiento)))
+                .andExpect(status().isOk());
     }
 }
